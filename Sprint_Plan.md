@@ -130,3 +130,208 @@ class NetworkState:
             "latency": latency
         })
 ```
+#### Acceptance Criteria:
+
+- สามารถเพิ่ม Node ได้
+- สามารถเพิ่ม Route ได้
+- เก็บ latency ได้ถูกต้อง
+
+### SA-03: Basic Routing Algorithm
+
+```python
+def select_best_route(routes):
+    return min(routes, key=lambda r: r["latency"])
+```
+#### Acceptance Criteria:
+
+- เลือก route ที่ latency ต่ำสุด
+- ทำงานกับ route หลายรายการได้
+
+### SA-04: Logging Module
+
+```python
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+def log_event(event):
+    logging.info(event)
+```
+
+#### Acceptance Criteria:
+
+- Log แสดงบน console
+- บันทึกเหตุการณ์การส่งข้อมูล
+
+### SA-05: Unit Testing Setup
+
+- ใช้ pytest
+- Test Node communication
+- Test Routing selection
+- Coverage ≥ 60%
+
+---
+
+## 4.5 Non-Functional Requirements (Sprint Alpha)
+
+| Category     | Requirement |
+|--------------|------------|
+| Reliability  | Node crash ไม่ทำให้ระบบทั้งหมดล่ม |
+| Scalability  | รองรับ ≥ 50 simulated nodes |
+| Performance  | Message broadcast ≤ 200ms (local test) |
+
+---
+
+## 4.6 Risks During Sprint Alpha
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Routing logic bug | Medium | Add unit test |
+| Infinite broadcast loop | High | Add visited-node tracking |
+| Performance issue | Medium | Limit node count in simulation |
+
+---
+
+## 4.7 Deliverables
+
+- Working Node Simulation
+- Routing Demo Script
+- Unit Test Suite
+- Sprint Alpha Demo Presentation
+
+---
+
+# 5. Sprint Beta – Evolution Engine MVP
+
+## Objective:
+เพิ่มความสามารถ adaptive topology
+
+## Tasks:
+
+- Route efficiency scoring
+- Auto edge removal
+- Traffic density monitoring
+- Simulation benchmark
+
+## Deliverables:
+
+- EvolutionEngine class
+- Efficiency metrics report
+- Before/After topology comparison
+
+---
+
+# 6. Sprint Gamma – Existence Communication Layer
+
+## Objective:
+สร้าง ExistencePacket และ Existence Transfer Protocol
+
+## Tasks:
+
+- Define ExistencePacket schema
+- Implement encryption
+- Build transmission handler
+- Validate integrity
+
+## Deliverables:
+
+- ETP v1.0 Prototype
+- Secure packet transmission demo
+
+---
+
+# 7. Sprint Delta – Structural Privacy Engine
+
+## Objective:
+Enforce architecture-level privacy
+
+## Tasks:
+
+- Identity-bound encryption
+- Ownership validation
+- Zero-visibility routing
+
+## Deliverables:
+
+- Privacy enforcement module
+- Security test report
+
+---
+
+# 8. Sprint Epsilon – Human Awareness Layer
+
+## Objective:
+ควบคุม transmission ตาม readiness
+
+## Tasks:
+
+- Readiness detection mock
+- Throttling system
+- Consent verification logic
+
+## Deliverables:
+
+- Human-Aware middleware
+- Load simulation report
+
+---
+
+# 9. Definition of Done (DoD)
+
+Sprint จะเสร็จเมื่อ:
+
+- Feature ทำงานได้จริง
+- Unit Test Coverage ≥ 80%
+- ไม่มี Critical Bug
+- Documentation update
+- Demo ผ่าน
+
+---
+
+# 10. Metrics & Tracking
+
+KPIs ต่อ Sprint:
+
+- Velocity (Story Points)
+- Bug Count
+- Test Coverage %
+- Performance Benchmark
+- Technical Debt Score
+
+---
+
+# 11. Continuous Integration
+
+- Auto test on pull request
+- Code review required
+- Linting enforcement
+- Branch protection enabled
+
+---
+
+# 12. Sprint Review Output
+
+ทุก Sprint ต้องมี:
+
+- Live Demo
+- Architecture Update
+- Performance Metrics
+- Risk Reassessment
+
+---
+
+13. Long-Term Vision Alignment
+
+Sprint ทุกตัวต้อง align กับ Vision หลักของ LEN:
+
+- Self-Evolving Architecture
+- Existence-Based Communication
+- Structural Privacy
+- Multi-Reality Integration
+
+---
+
+14. Conclusion
+
+Sprint Plan นี้ทำให้ LEN พัฒนาแบบเป็นระบบ
+จาก Prototype → Adaptive → Secure → Conscious-Aware Network
