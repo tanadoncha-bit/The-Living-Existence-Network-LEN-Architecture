@@ -31,20 +31,19 @@ LEN มีเป้าหมายเพื่อ:
 
 LEN แบ่งออกเป็น 5 ชั้นหลัก:
 
-'''
+```
 +---------------------------------------------------+
-| Reality Integration Layer |
+| Reality Integration Layer                        |
 +---------------------------------------------------+
-| Human Awareness Layer |
+| Human Awareness Layer                            |
 +---------------------------------------------------+
-| Existence Communication Layer |
+| Existence Communication Layer                    |
 +---------------------------------------------------+
-| Evolution Engine |
+| Evolution Engine                                 |
 +---------------------------------------------------+
-| Infrastructure Layer |
+| Infrastructure Layer                             |
 +---------------------------------------------------+
-'''
-
+```
 
 ---
 
