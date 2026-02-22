@@ -70,13 +70,20 @@ D --> E
 - เพิ่ม/ลบเส้นทางตามประสิทธิภาพ
 - จัดลำดับเส้นทางที่เหมาะสมที่สุด
 
-Pseudo-logic:
+### Evolution Algorithm (Pseudo-code)
 
-IF route_efficiency < threshold:
-remove_edge()
+```python
+def evolve_network(network_state):
 
-IF traffic_density > optimal:
-spawn_new_path()
+    for route in network_state.routes:
+
+        if route.efficiency < THRESHOLD:
+            network_state.remove_edge(route)
+
+    if network_state.traffic_density > OPTIMAL_LEVEL:
+        network_state.spawn_new_path()
+
+    return network_state
 
 
 ---
@@ -85,15 +92,17 @@ spawn_new_path()
 
 ทำหน้าที่แปลงสถานะของ Entity ให้เป็นข้อมูลที่ส่งผ่านเครือข่ายได้
 
-### โครงสร้างข้อมูล ExistencePacket
+### ExistencePacket Data Structure
 
-ExistencePacket {
-entity_id: string
-cognitive_state_vector: float[]
-intent_signature: hash
-privacy_key: encrypted
-timestamp: epoch
+```typescript
+interface ExistencePacket {
+    entityId: string                 // Unique identifier of the entity
+    cognitiveStateVector: number[]   // Multidimensional cognitive representation
+    intentSignature: string          // Cryptographic hash of intent
+    privacyKey: string               // Encrypted ownership-bound key
+    timestamp: number                // Unix epoch time
 }
+```
 
 
 ---
@@ -130,12 +139,15 @@ timestamp: epoch
 - Virtual Layer
 - Simulation Layer
 
-โครงสร้างข้อมูล:
+```markdown
+### RealityMap Data Structure
 
-RealityMap {
-physical_layer_id
-virtual_layer_id
-simulation_layer_id
+```typescript
+interface RealityMap {
+    physicalLayerId: string
+    virtualLayerId: string
+    simulationLayerId: string
+    lastSyncTimestamp: number
 }
 
 
