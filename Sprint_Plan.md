@@ -5,13 +5,15 @@
 
 # 1. Project Context
 
-Project: The Living Existence Network (LEN)  
-Methodology: Agile Scrum  
-Sprint Duration: 2 Weeks (14 Days)  
-Team Size: 5–7 Members  
-Branching Strategy: GitFlow  
-CI/CD: GitHub Actions  
-Deployment: Docker + Kubernetes (Future Phase)
+| Item | Detail |
+|------|--------|
+| Project | The Living Existence Network (LEN) |
+| Methodology | Agile Scrum |
+| Sprint Duration | 2 Weeks (14 Days) |
+| Team Size | 5–7 Members |
+| Branching Strategy | GitFlow |
+| CI/CD | GitHub Actions |
+| Deployment | Docker + Kubernetes (Future Phase) |
 
 ---
 
@@ -320,7 +322,7 @@ KPIs ต่อ Sprint:
 
 ---
 
-13. Long-Term Vision Alignment
+# 13. Long-Term Vision Alignment
 
 Sprint ทุกตัวต้อง align กับ Vision หลักของ LEN:
 
@@ -331,7 +333,7 @@ Sprint ทุกตัวต้อง align กับ Vision หลักขอ�
 
 ---
 
-14. Conclusion
+# 14. Conclusion
 
 Sprint Plan นี้ทำให้ LEN พัฒนาแบบเป็นระบบ
 จาก Prototype → Adaptive → Secure → Conscious-Aware Network
