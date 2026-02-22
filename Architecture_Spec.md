@@ -94,7 +94,7 @@ def evolve_network(network_state):
 
 ### ExistencePacket Data Structure
 
-```typescript
+```
 interface ExistencePacket {
     entityId: string                 // Unique identifier of the entity
     cognitiveStateVector: number[]   // Multidimensional cognitive representation
