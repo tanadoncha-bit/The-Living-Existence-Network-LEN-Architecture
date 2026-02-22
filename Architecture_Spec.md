@@ -84,7 +84,7 @@ def evolve_network(network_state):
         network_state.spawn_new_path()
 
     return network_state
-
+```
 
 ---
 
@@ -149,7 +149,7 @@ interface RealityMap {
     simulationLayerId: string
     lastSyncTimestamp: number
 }
-
+```
 
 ---
 
