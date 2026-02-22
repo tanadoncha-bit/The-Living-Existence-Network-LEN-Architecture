@@ -139,7 +139,6 @@ interface ExistencePacket {
 - Virtual Layer
 - Simulation Layer
 
-```typescript
 ### RealityMap Data Structure
 
 ```typescript
