@@ -21,13 +21,11 @@
 
 | บทบาท | ความรับผิดชอบ |
 |--------|---------------|
-| Product Owner | กำหนดวิสัยทัศน์ และอนุมัติขอบเขต Sprint |
-| Scrum Master | อำนวยความสะดวกกระบวนการ และกำจัดอุปสรรค |
-| Backend Engineer | พัฒนา Core Modules |
-| Network Engineer | พัฒนา Routing และ Evolution Logic |
-| Security Engineer | ดูแล Encryption และความเป็นส่วนตัว |
-| QA Engineer | ทดสอบและตรวจสอบคุณภาพ |
-| DevOps | ดูแล CI/CD และ Deployment |
+| Architect | ออกแบบโครงสร้าง LEN ทั้งระบบ (Layer Architecture, Node Model, Protocol Design) |
+| Specialist | พัฒนา Node Simulation, Routing Logic, ExistencePacket Handling |
+| Engineer | พัฒนา Evolution Engine, Awareness Logic |
+| DevOps | ตั้งค่า Repository, GitFlow, CI/CD |
+| Tester/QA | จัดทำเอกสาร, Test Plan, Test Case |
 
 ---
 
