@@ -1,5 +1,5 @@
 # The Living Existence Network (LEN)
-## เอกสารสถาปัตยกรรมระบบ (Architecture Specification) v1.0
+## เอกสารสถาปัตยกรรมระบบ (Architecture Specification) v2.0
 
 ---
 
