@@ -22,114 +22,106 @@ Methodology: Agile Scrum
 
 | Role | Assigned To | Primary Responsibilities | Secondary Responsibilities | Decision Authority |
 |------|------------|--------------------------|----------------------------|-------------------|
-| System Architect | นายธนดล ไชยศิลา | ออกแบบโครงสร้าง LEN ทั้งระบบ (Layer Architecture, Node Model, Protocol Design) | ตรวจสอบความสอดคล้องของเอกสาร | อนุมัติการเปลี่ยนแปลง Architecture |
-| Backend Engineer | นายกฤติธี ศรีใสย์ | พัฒนา Node Simulation, Routing Logic, ExistencePacket Handling | ปรับปรุง Performance | ตัดสินใจ Implementation ระดับ Code |
-| AI / Logic Engineer | นางสาวปรายฝน ฮกเซ็ง | พัฒนา Evolution Engine, Awareness Logic | สร้าง Testing Scenario | อนุมัติ Logic Rule |
-| Infrastructure & DevOps | นายคมชาญ วรสาร | ตั้งค่า Repository, GitFlow, CI/CD | Simulation Environment Setup | ควบคุม Deployment Process |
-| QA & Documentation Lead | นางสาวนันทพร ลุนทอง | จัดทำเอกสาร, Test Plan, Test Case | ตรวจสอบคุณภาพงาน Sprint | อนุมัติความครบถ้วนของเอกสาร |
+| Architect | นายธนดล ไชยศิลา | ออกแบบโครงสร้าง LEN ทั้งระบบ (Layer Architecture, Node Model, Protocol Design) | ตรวจสอบความสอดคล้องของเอกสาร | อนุมัติการเปลี่ยนแปลง Architecture |
+| Specialist | นายกฤติธี ศรีใสย์ | พัฒนา Node Simulation, Routing Logic, ExistencePacket Handling | ปรับปรุง Performance | ตัดสินใจ Implementation ระดับ Code |
+| Engineer | นางสาวปรายฝน ฮกเซ็ง | พัฒนา Evolution Engine, Awareness Logic | สร้าง Testing Scenario | อนุมัติ Logic Rule |
+| DevOps | นายคมชาญ วรสาร | ตั้งค่า Repository, GitFlow, CI/CD | Simulation Environment Setup | ควบคุม Deployment Process |
+| Tester/QA | นางสาวนันทพร ลุนทอง | จัดทำเอกสาร, Test Plan, Test Case | ตรวจสอบคุณภาพงาน Sprint | อนุมัติความครบถ้วนของเอกสาร |
 
 ---
 
-# 3. Responsibility Breakdown by Layer
+# 3. การแบ่งความรับผิดชอบตาม Layer
 
 ## 3.1 Awareness Layer
-Responsible: AI / Logic Engineer  
-Support: Backend Engineer  
+**ผู้รับผิดชอบหลัก:** AI / Logic Engineer  
+**ผู้สนับสนุน:** Backend Engineer  
 
-หน้าที่:
-- พัฒนา cognitive-state vector model
-- คำนวณ intent_signature
-- จัดการ awareness threshold
+### หน้าที่
+- พัฒนาโมเดล cognitive-state vector  
+- คำนวณ intent_signature  
+- จัดการค่า awareness threshold  
 
 ---
 
 ## 3.2 Existence Communication Layer
-Responsible: Backend Engineer  
-Support: System Architect  
+**ผู้รับผิดชอบหลัก:** Backend Engineer  
+**ผู้สนับสนุน:** System Architect  
 
-หน้าที่:
-- พัฒนา Message broadcast
-- Routing protocol
-- Prevent infinite loop
-- Latency optimization
+### หน้าที่
+- พัฒนาระบบกระจายข้อความ (Message Broadcast)  
+- พัฒนา Routing Protocol  
+- ป้องกันการเกิด Infinite Loop  
+- ปรับปรุงประสิทธิภาพด้าน Latency  
 
 ---
 
 ## 3.3 Evolution Engine
-Responsible: AI / Logic Engineer  
-Support: System Architect  
+**ผู้รับผิดชอบหลัก:** AI / Logic Engineer  
+**ผู้สนับสนุน:** System Architect  
 
-หน้าที่:
-- Define evolution rules
-- Adaptive routing logic
-- System behavior simulation
+### หน้าที่
+- กำหนดกฎการวิวัฒน์ (Evolution Rules)  
+- พัฒนา Adaptive Routing Logic  
+- จำลองพฤติกรรมของระบบ (System Behavior Simulation)  
 
 ---
 
 ## 3.4 Infrastructure Layer
-Responsible: Infrastructure & DevOps  
+**ผู้รับผิดชอบ:** Infrastructure & DevOps  
 
-หน้าที่:
-- GitHub repository management
-- Branching strategy (GitFlow)
-- CI/CD setup (GitHub Actions)
-- Simulation environment control
+### หน้าที่
+- บริหารจัดการ GitHub Repository  
+- วางกลยุทธ์การแตก Branch (GitFlow)  
+- ตั้งค่า CI/CD (GitHub Actions)  
+- ควบคุมสภาพแวดล้อมสำหรับ Simulation  
 
 ---
 
 ## 3.5 Documentation & Quality Control
-Responsible: QA & Documentation Lead  
+**ผู้รับผิดชอบ:** QA & Documentation Lead  
 
-หน้าที่:
-- จัดทำ Architecture_Spec.md
-- Implementation_Plan.md
-- Sprint_Plan.md
-- ตรวจสอบ Markdown formatting
-- Validate test results
-
----
-
-# 4. Decision & Escalation Flow
-
-1. Technical Implementation Issue → Backend Engineer
-2. Logic/AI Issue → AI Engineer
-3. Architecture Conflict → System Architect
-4. Infrastructure Problem → DevOps
-5. Documentation Approval → QA Lead
-
-Final escalation authority: System Architect
+### หน้าที่
+- จัดทำ `Architecture_Spec.md`  
+- จัดทำ `Implementation_Plan.md`  
+- จัดทำ `Sprint_Plan.md`  
+- ตรวจสอบรูปแบบ Markdown  
+- ตรวจสอบและยืนยันผลการทดสอบ  
 
 ---
 
-# 5. Collaboration Rules
+# 4. กระบวนการตัดสินใจและการยกระดับปัญหา (Decision & Escalation Flow)
 
-- Daily Standup: 10–15 minutes
-- Sprint Review: End of 2-week cycle
-- Pull Request Review: ต้องมีอย่างน้อย 1 approval
-- Major Architecture Change: ต้องได้รับการอนุมัติจาก Architect
+1. ปัญหาด้านการพัฒนาเชิงเทคนิค → Backend Engineer  
+2. ปัญหาด้าน Logic/AI → AI Engineer  
+3. ความขัดแย้งด้านสถาปัตยกรรม → System Architect  
+4. ปัญหาโครงสร้างพื้นฐาน → DevOps  
+5. การอนุมัติเอกสาร → QA Lead  
+
+**ผู้มีอำนาจตัดสินใจขั้นสุดท้าย:** System Architect  
 
 ---
 
-# 6. Accountability Matrix (RACI Model)
+# 5. กฎการทำงานร่วมกัน (Collaboration Rules)
 
-| Task | Architect | Backend | AI Engineer | DevOps | QA |
+- Daily Standup: 10–15 นาที  
+- Sprint Review: สิ้นสุดรอบ 2 สัปดาห์  
+- Pull Request Review: ต้องมีการอนุมัติอย่างน้อย 1 คน  
+- การเปลี่ยนแปลงสถาปัตยกรรมหลัก: ต้องได้รับการอนุมัติจาก Architect  
+
+---
+
+# 6. ตารางความรับผิดชอบ (RACI Model)
+
+| งาน | Architect | Backend | AI Engineer | DevOps | QA |
 |------|-----------|---------|------------|--------|----|
-| Architecture Design | R | C | C | C | I |
-| Node Implementation | C | R | C | I | I |
-| Evolution Logic | C | C | R | I | I |
-| CI/CD Setup | I | I | I | R | C |
-| Documentation | C | I | I | I | R |
+| ออกแบบสถาปัตยกรรม | R | C | C | C | I |
+| พัฒนา Node | C | R | C | I | I |
+| พัฒนา Evolution Logic | C | C | R | I | I |
+| ตั้งค่า CI/CD | I | I | I | R | C |
+| จัดทำเอกสาร | C | I | I | I | R |
 
-Legend:  
-R = Responsible  
-A = Accountable  
-C = Consulted  
-I = Informed  
-
----
-
-# 7. Commitment Statement
-
-ทีมงาน The Living Existence Network (LEN) ยืนยันว่าจะปฏิบัติตามบทบาทหน้าที่ที่ได้รับมอบหมาย และร่วมมือกันพัฒนา Sprint Alpha ให้สำเร็จตามเป้าหมายที่กำหนด
-
----
+**Legend:**  
+- **R** = Responsible (ผู้รับผิดชอบหลักในการลงมือทำ)  
+- **A** = Accountable (ผู้รับผิดชอบผลลัพธ์ขั้นสุดท้าย)  
+- **C** = Consulted (ผู้ให้คำปรึกษา)  
+- **I** = Informed (ผู้รับทราบข้อมูล)  
