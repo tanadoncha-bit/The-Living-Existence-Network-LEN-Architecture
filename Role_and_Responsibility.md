@@ -33,8 +33,8 @@ Methodology: Agile Scrum
 # 3. การแบ่งความรับผิดชอบตาม Layer
 
 ## 3.1 Awareness Layer
-**ผู้รับผิดชอบหลัก:** AI / Logic Engineer  
-**ผู้สนับสนุน:** Backend Engineer  
+**ผู้รับผิดชอบหลัก:** Engineer  
+**ผู้สนับสนุน:** Specialist  
 
 ### หน้าที่
 - พัฒนาโมเดล cognitive-state vector  
@@ -44,8 +44,8 @@ Methodology: Agile Scrum
 ---
 
 ## 3.2 Existence Communication Layer
-**ผู้รับผิดชอบหลัก:** Backend Engineer  
-**ผู้สนับสนุน:** System Architect  
+**ผู้รับผิดชอบหลัก:** Specialist  
+**ผู้สนับสนุน:** Architect  
 
 ### หน้าที่
 - พัฒนาระบบกระจายข้อความ (Message Broadcast)  
@@ -56,8 +56,8 @@ Methodology: Agile Scrum
 ---
 
 ## 3.3 Evolution Engine
-**ผู้รับผิดชอบหลัก:** AI / Logic Engineer  
-**ผู้สนับสนุน:** System Architect  
+**ผู้รับผิดชอบหลัก:** Engineer  
+**ผู้สนับสนุน:** Architect  
 
 ### หน้าที่
 - กำหนดกฎการวิวัฒน์ (Evolution Rules)  
@@ -67,7 +67,7 @@ Methodology: Agile Scrum
 ---
 
 ## 3.4 Infrastructure Layer
-**ผู้รับผิดชอบ:** Infrastructure & DevOps  
+**ผู้รับผิดชอบ:** DevOps  
 
 ### หน้าที่
 - บริหารจัดการ GitHub Repository  
@@ -78,7 +78,7 @@ Methodology: Agile Scrum
 ---
 
 ## 3.5 Documentation & Quality Control
-**ผู้รับผิดชอบ:** QA & Documentation Lead  
+**ผู้รับผิดชอบ:** Tester/QA  
 
 ### หน้าที่
 - จัดทำ `Architecture_Spec.md`  
@@ -91,13 +91,13 @@ Methodology: Agile Scrum
 
 # 4. กระบวนการตัดสินใจและการยกระดับปัญหา (Decision & Escalation Flow)
 
-1. ปัญหาด้านการพัฒนาเชิงเทคนิค → Backend Engineer  
-2. ปัญหาด้าน Logic/AI → AI Engineer  
-3. ความขัดแย้งด้านสถาปัตยกรรม → System Architect  
+1. ปัญหาด้านการพัฒนาเชิงเทคนิค → Specialist  
+2. ปัญหาด้าน Logic/AI → Engineer  
+3. ความขัดแย้งด้านสถาปัตยกรรม → Architect  
 4. ปัญหาโครงสร้างพื้นฐาน → DevOps  
-5. การอนุมัติเอกสาร → QA Lead  
+5. การอนุมัติเอกสาร → Tester/QA  
 
-**ผู้มีอำนาจตัดสินใจขั้นสุดท้าย:** System Architect  
+**ผู้มีอำนาจตัดสินใจขั้นสุดท้าย:** Architect  
 
 ---
 
@@ -112,7 +112,7 @@ Methodology: Agile Scrum
 
 # 6. ตารางความรับผิดชอบ (RACI Model)
 
-| งาน | Architect | Backend | AI Engineer | DevOps | QA |
+| งาน | Architect | Specialist | Engineer | DevOps | Tester/QA |
 |------|-----------|---------|------------|--------|----|
 | ออกแบบสถาปัตยกรรม | R | C | C | C | I |
 | พัฒนา Node | C | R | C | I | I |
