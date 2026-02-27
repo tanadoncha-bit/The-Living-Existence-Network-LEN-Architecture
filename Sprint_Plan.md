@@ -1,339 +1,226 @@
-# The Living Existence Network (LEN)
+# The Living Existence Network (LEN) 
 ## Sprint Plan v2.0 (Detailed Engineering Version)
 
 ---
 
-# 1. Project Context
+# 1. บริบทโครงการ (Project Context)
 
-| Item | Detail |
-|------|--------|
-| Project | The Living Existence Network (LEN) |
-| Methodology | Agile Scrum |
-| Sprint Duration | 2 Weeks (14 Days) |
-| Team Size | 5–7 Members |
-| Branching Strategy | GitFlow |
+| รายการ | รายละเอียด |
+|--------|------------|
+| โครงการ | The Living Existence Network (LEN) |
+| วิธีการพัฒนา | Agile Scrum |
+| ระยะเวลา Sprint | 2 สัปดาห์ (14 วัน) |
+| ขนาดทีม | 5–7 คน |
+| กลยุทธ์ Branch | GitFlow |
 | CI/CD | GitHub Actions |
-| Deployment | Docker + Kubernetes (Future Phase) |
+| Deployment | Docker + Kubernetes (ระยะถัดไป) |
 
 ---
 
-# 2. Team Structure & Roles
+# 2. โครงสร้างทีมและบทบาท (Team Structure & Roles)
 
-| Role | Responsibility |
-|------|---------------|
-| Product Owner | Define Vision, Approve Sprint Scope |
-| Scrum Master | Facilitate Process, Remove Blockers |
-| Backend Engineer | Core Modules Implementation |
-| Network Engineer | Routing & Evolution Logic |
-| Security Engineer | Encryption & Privacy |
-| QA Engineer | Testing & Validation |
-| DevOps | CI/CD & Deployment |
-
----
-
-# 3. Sprint Cadence
-
-Day 1: Sprint Planning  
-Day 2–11: Development + Daily Standup  
-Day 12–13: Testing + Integration  
-Day 14: Sprint Review + Retrospective  
-
-Daily Standup:
-- What did you do yesterday?
-- What will you do today?
-- Any blockers?
+| บทบาท | ความรับผิดชอบ |
+|--------|---------------|
+| Product Owner | กำหนดวิสัยทัศน์ และอนุมัติขอบเขต Sprint |
+| Scrum Master | อำนวยความสะดวกกระบวนการ และกำจัดอุปสรรค |
+| Backend Engineer | พัฒนา Core Modules |
+| Network Engineer | พัฒนา Routing และ Evolution Logic |
+| Security Engineer | ดูแล Encryption และความเป็นส่วนตัว |
+| QA Engineer | ทดสอบและตรวจสอบคุณภาพ |
+| DevOps | ดูแล CI/CD และ Deployment |
 
 ---
 
-# 4. Sprint Alpha – Core Infrastructure Foundation
+# 3. จังหวะการทำงานของ Sprint (Sprint Cadence)
 
-## Objective
+วัน 1: วางแผน Sprint  
+วัน 2–11: พัฒนา + Daily Standup  
+วัน 12–13: ทดสอบ + Integration  
+วัน 14: Sprint Review + Retrospective  
 
-สร้างระบบ Node แบบกระจายศูนย์ที่รันได้จริง  
-สามารถจำลองเครือข่ายพื้นฐานและส่งข้อความระหว่าง Node ได้
-
----
-
-## 4.1 Sprint Goal
-
-“LEN Node Runtime สามารถเชื่อมต่อกันและส่งข้อความผ่าน Basic Routing ได้”
-
----
-
-## 4.2 Functional Scope
-
-- Distributed Node Class
-- Network State Model
-- Basic Routing Logic
-- Logging & Monitoring
-- Unit Test Framework Setup
+### Daily Standup
+- เมื่อวานทำอะไรไปบ้าง?
+- วันนี้จะทำอะไร?
+- มีอุปสรรคอะไรหรือไม่?
 
 ---
 
-## 4.3 Architecture for Sprint Alpha
+# 4. Sprint Alpha – รากฐานโครงสร้างพื้นฐานหลัก
 
-Modules:
+## วัตถุประสงค์
 
-- node/
-- routing/
-- network_state/
-- logger/
-- tests/
+สร้างระบบ Node แบบกระจายศูนย์ที่สามารถรันได้จริง  
+จำลองเครือข่ายพื้นฐาน และส่งข้อความระหว่าง Node ได้
 
 ---
 
-## 4.4 Detailed Task Breakdown
+## 4.1 เป้าหมาย Sprint (Sprint Goal)
 
-### SA-01: Node Runtime Skeleton
+> “LEN Node Runtime สามารถเชื่อมต่อกันและส่งข้อความผ่าน Basic Routing ได้”
 
-**Description:**  
-สร้าง class Node สำหรับจำลอง distributed environment
+---
 
-```python
-class Node:
+## 4.2 ขอบเขตการทำงาน (Functional Scope)
 
-    def __init__(self, node_id):
-        self.node_id = node_id
-        self.connected_nodes = []
-        self.status = "ACTIVE"
+- Distributed Node Class  
+- Network State Model  
+- Basic Routing Logic  
+- Logging & Monitoring  
+- ตั้งค่า Unit Test Framework  
 
-    def connect(self, node):
-        self.connected_nodes.append(node)
+---
 
-    def send(self, message):
-        for node in self.connected_nodes:
-            node.receive(message)
+## 4.3 สถาปัตยกรรมสำหรับ Sprint Alpha
 
-    def receive(self, message):
-        print(f"[{self.node_id}] received:", message)
-```
+โครงสร้างโมดูล:
+
+- `node/`
+- `routing/`
+- `network_state/`
+- `logger/`
+- `tests/`
+
+---
+
+## 4.4 การแตกงานแบบละเอียด (Detailed Task Breakdown)
+
+### SA-01: โครงสร้างพื้นฐาน Node Runtime
+
+**คำอธิบาย:**  
+สร้างคลาส `Node` สำหรับจำลองสภาพแวดล้อมแบบ Distributed
+
 #### Acceptance Criteria:
 
-- Node สามารถ connect ได้
-- Node ส่งและรับข้อความได้
-- ไม่มี runtime error
+- Node สามารถ connect กันได้  
+- Node สามารถส่งและรับข้อความได้  
+- ไม่มี runtime error  
+
+---
 
 ### SA-02: Network State Model
 
-```python
-class NetworkState:
-
-    def __init__(self):
-        self.nodes = {}
-        self.routes = []
-
-    def add_node(self, node):
-        self.nodes[node.node_id] = node
-
-    def add_route(self, source, target, latency):
-        self.routes.append({
-            "source": source,
-            "target": target,
-            "latency": latency
-        })
-```
 #### Acceptance Criteria:
 
-- สามารถเพิ่ม Node ได้
-- สามารถเพิ่ม Route ได้
-- เก็บ latency ได้ถูกต้อง
+- สามารถเพิ่ม Node ได้  
+- สามารถเพิ่ม Route ได้  
+- เก็บค่า latency ได้ถูกต้อง  
+
+---
 
 ### SA-03: Basic Routing Algorithm
 
-```python
-def select_best_route(routes):
-    return min(routes, key=lambda r: r["latency"])
-```
 #### Acceptance Criteria:
 
-- เลือก route ที่ latency ต่ำสุด
-- ทำงานกับ route หลายรายการได้
+- เลือก route ที่มี latency ต่ำสุดได้  
+- รองรับหลาย route ได้ถูกต้อง  
+
+---
 
 ### SA-04: Logging Module
 
-```python
-import logging
-
-logging.basicConfig(level=logging.INFO)
-
-def log_event(event):
-    logging.info(event)
-```
-
 #### Acceptance Criteria:
 
-- Log แสดงบน console
-- บันทึกเหตุการณ์การส่งข้อมูล
-
-### SA-05: Unit Testing Setup
-
-- ใช้ pytest
-- Test Node communication
-- Test Routing selection
-- Coverage ≥ 60%
+- Log แสดงบน console  
+- บันทึกเหตุการณ์การส่งข้อมูลได้  
 
 ---
 
-## 4.5 Non-Functional Requirements (Sprint Alpha)
+### SA-05: การตั้งค่า Unit Testing
 
-| Category     | Requirement |
-|--------------|------------|
-| Reliability  | Node crash ไม่ทำให้ระบบทั้งหมดล่ม |
-| Scalability  | รองรับ ≥ 50 simulated nodes |
-| Performance  | Message broadcast ≤ 200ms (local test) |
-
----
-
-## 4.6 Risks During Sprint Alpha
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Routing logic bug | Medium | Add unit test |
-| Infinite broadcast loop | High | Add visited-node tracking |
-| Performance issue | Medium | Limit node count in simulation |
+- ใช้ `pytest`  
+- ทดสอบ Node communication  
+- ทดสอบ Routing selection  
+- Coverage ≥ 60%  
 
 ---
 
-## 4.7 Deliverables
+## 4.5 ข้อกำหนดที่ไม่ใช่เชิงฟังก์ชัน (Non-Functional Requirements)
 
-- Working Node Simulation
-- Routing Demo Script
-- Unit Test Suite
-- Sprint Alpha Demo Presentation
-
----
-
-# 5. Sprint Beta – Evolution Engine MVP
-
-## Objective:
-เพิ่มความสามารถ adaptive topology
-
-## Tasks:
-
-- Route efficiency scoring
-- Auto edge removal
-- Traffic density monitoring
-- Simulation benchmark
-
-## Deliverables:
-
-- EvolutionEngine class
-- Efficiency metrics report
-- Before/After topology comparison
+| หมวดหมู่ | ข้อกำหนด |
+|-----------|----------|
+| Reliability | Node ล่มต้องไม่ทำให้ระบบทั้งหมดล่ม |
+| Scalability | รองรับ ≥ 50 simulated nodes |
+| Performance | Message broadcast ≤ 200ms (ทดสอบภายในเครื่อง) |
 
 ---
 
-# 6. Sprint Gamma – Existence Communication Layer
+## 4.6 ความเสี่ยงใน Sprint Alpha
 
-## Objective:
-สร้าง ExistencePacket และ Existence Transfer Protocol
-
-## Tasks:
-
-- Define ExistencePacket schema
-- Implement encryption
-- Build transmission handler
-- Validate integrity
-
-## Deliverables:
-
-- ETP v1.0 Prototype
-- Secure packet transmission demo
+| ความเสี่ยง | ผลกระทบ | แนวทางป้องกัน |
+|------------|----------|---------------|
+| Routing logic bug | ปานกลาง | เพิ่ม Unit Test |
+| Infinite broadcast loop | สูง | เพิ่ม visited-node tracking |
+| ปัญหาประสิทธิภาพ | ปานกลาง | จำกัดจำนวน node ใน simulation |
 
 ---
 
-# 7. Sprint Delta – Structural Privacy Engine
+## 4.7 สิ่งที่ต้องส่งมอบ (Deliverables)
 
-## Objective:
-Enforce architecture-level privacy
-
-## Tasks:
-
-- Identity-bound encryption
-- Ownership validation
-- Zero-visibility routing
-
-## Deliverables:
-
-- Privacy enforcement module
-- Security test report
+- ระบบ Node Simulation ที่ทำงานได้จริง  
+- Routing Demo Script  
+- ชุด Unit Test  
+- เอกสาร/สไลด์นำเสนอ Sprint Alpha  
 
 ---
 
-# 8. Sprint Epsilon – Human Awareness Layer
+# 5. Definition of Done (DoD)
 
-## Objective:
-ควบคุม transmission ตาม readiness
+Sprint จะถือว่าเสร็จสมบูรณ์เมื่อ:
 
-## Tasks:
-
-- Readiness detection mock
-- Throttling system
-- Consent verification logic
-
-## Deliverables:
-
-- Human-Aware middleware
-- Load simulation report
+- Feature ทำงานได้จริง  
+- Unit Test Coverage ≥ 80%  
+- ไม่มี Critical Bug  
+- เอกสารถูกอัปเดต  
+- Demo ผ่านการยอมรับ  
 
 ---
 
-# 9. Definition of Done (DoD)
-
-Sprint จะเสร็จเมื่อ:
-
-- Feature ทำงานได้จริง
-- Unit Test Coverage ≥ 80%
-- ไม่มี Critical Bug
-- Documentation update
-- Demo ผ่าน
-
----
-
-# 10. Metrics & Tracking
+# 6. ตัวชี้วัดและการติดตามผล (Metrics & Tracking)
 
 KPIs ต่อ Sprint:
 
-- Velocity (Story Points)
-- Bug Count
-- Test Coverage %
-- Performance Benchmark
-- Technical Debt Score
+- Velocity (Story Points)  
+- จำนวน Bug  
+- Test Coverage (%)  
+- Performance Benchmark  
+- คะแนน Technical Debt  
 
 ---
 
-# 11. Continuous Integration
+# 7. Continuous Integration
 
-- Auto test on pull request
-- Code review required
-- Linting enforcement
-- Branch protection enabled
+- รัน Auto Test เมื่อมี Pull Request  
+- ต้องผ่าน Code Review  
+- บังคับใช้ Linting  
+- เปิดใช้งาน Branch Protection  
 
 ---
 
-# 12. Sprint Review Output
+# 8. ผลลัพธ์จาก Sprint Review
 
 ทุก Sprint ต้องมี:
 
-- Live Demo
-- Architecture Update
-- Performance Metrics
-- Risk Reassessment
+- Live Demo  
+- อัปเดตสถาปัตยกรรม  
+- รายงาน Performance Metrics  
+- ประเมินความเสี่ยงใหม่  
 
 ---
 
-# 13. Long-Term Vision Alignment
+# 9. การสอดคล้องกับวิสัยทัศน์ระยะยาว
 
-Sprint ทุกตัวต้อง align กับ Vision หลักของ LEN:
+ทุก Sprint ต้องสอดคล้องกับวิสัยทัศน์หลักของ LEN:
 
-- Self-Evolving Architecture
-- Existence-Based Communication
-- Structural Privacy
-- Multi-Reality Integration
+- Self-Evolving Architecture  
+- Existence-Based Communication  
+- Structural Privacy  
+- Multi-Reality Integration  
 
 ---
 
-# 14. Conclusion
+# 10. บทสรุป
 
-Sprint Plan นี้ทำให้ LEN พัฒนาแบบเป็นระบบ
-จาก Prototype → Adaptive → Secure → Conscious-Aware Network
+Sprint Plan ฉบับนี้ทำให้ LEN พัฒนาอย่างเป็นระบบ  
+
+จาก  
+**Prototype → Adaptive → Secure → Conscious-Aware Network**
