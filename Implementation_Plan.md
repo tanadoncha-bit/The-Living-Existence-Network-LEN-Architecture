@@ -77,9 +77,9 @@ class EvolutionEngine:
 ```
 ## Deliverables
 
-- Adaptive Routing Module
-- Topology Simulation Environment
-- Performance Benchmark Report
+- โมดูลการกำหนดเส้นทางแบบปรับตัว (Adaptive Routing Module)
+- สภาพแวดล้อมสำหรับจำลองโครงสร้างเครือข่าย (Topology Simulation Environment)
+- รายงานการวัดประสิทธิภาพ (Performance Benchmark Report)
 
 ---
 
@@ -91,10 +91,10 @@ class EvolutionEngine:
 
 ## งานที่ต้องทำ
 
-- Define ExistencePacket Schema
-- Implement Encryption Layer
-- Develop Intent Signature Validation
-- Build ETP Transmission Handler
+- กำหนดโครงสร้าง ExistencePacket (ExistencePacket Schema)
+- พัฒนาชั้นการเข้ารหัส (Encryption Layer)
+- สร้างระบบตรวจสอบลายเซ็นเจตนา (Intent Signature Validation)
+- สร้างตัวจัดการการส่งข้อมูลของ ETP (ETP Transmission Handler)
 
 ## ExistencePacket Interface
 
@@ -125,16 +125,16 @@ interface ExistencePacket {
 
 ## งานที่ต้องทำ
 
-- Implement Identity-Bound Encryption
-- Develop Access Validation Layer
-- Create Zero-Visibility Routing Policy
-- Add Ownership Verification
+- พัฒนาการเข้ารหัสแบบผูกกับตัวตน (Identity-Bound Encryption)
+- สร้างชั้นตรวจสอบสิทธิ์การเข้าถึง (Access Validation Layer)
+- สร้างนโยบายการส่งข้อมูลแบบไม่เปิดเผยเส้นทาง (Zero-Visibility Routing Policy)
+- เพิ่มระบบตรวจสอบความเป็นเจ้าของ (Ownership Verification)
 
 ## Deliverables
 
-- Structural Privacy Module
-- Security Testing Report
-- Penetration Test Simulation
+- โมดูลความเป็นส่วนตัวเชิงโครงสร้าง (Structural Privacy Module)
+- รายงานการทดสอบความปลอดภัย (Security Testing Report)
+- การจำลองการทดสอบเจาะระบบ (Penetration Test Simulation)
 
 ---
 
@@ -146,17 +146,17 @@ interface ExistencePacket {
 
 ## งานที่ต้องทำ
 
-- Develop Readiness Detection API
-- Implement Communication Throttling
-- Integrate Consent Verification
-- Add Emotional State Mapping (Future)
+- พัฒนา API สำหรับตรวจจับความพร้อม (Readiness Detection API)
+- พัฒนาระบบควบคุมอัตราการสื่อสาร (Communication Throttling)
+- เชื่อมรวมระบบตรวจสอบการยินยอม (Consent Verification)
+- เพิ่มการทำแผนที่สถานะทางอารมณ์ (ในอนาคต)
 
 ## Deliverables
 
-- Human-Aware Middleware
-- Cognitive Load Simulation Test
-- Consent Enforcement Module
-
+- มิดเดิลแวร์ที่รับรู้บริบทของมนุษย์ (Human-Aware Middleware)
+- การทดสอบจำลองภาระทางความคิด (Cognitive Load Simulation Test)
+- โมดูลบังคับใช้การยินยอม (Consent Enforcement Module)
+- 
 ---
 
 # 8. Phase 6 – Reality Integration Layer
@@ -167,10 +167,10 @@ interface ExistencePacket {
 
 ## งานที่ต้องทำ
 
-- Develop RealityMap Interface
-- Build Layer Synchronization Engine
-- Implement Cross-Layer State Sync
-- Add Conflict Resolution Mechanism
+- พัฒนาอินเทอร์เฟซ RealityMap
+- สร้างระบบซิงโครไนซ์ระหว่างชั้น (Layer Synchronization Engine)
+- พัฒนาการซิงค์สถานะข้ามชั้น (Cross-Layer State Sync)
+- เพิ่มกลไกแก้ไขความขัดแย้ง (Conflict Resolution Mechanism)
 
 ## RealityMap Interface
 
@@ -185,21 +185,20 @@ interface RealityMap {
 
 ## Deliverables
 
-- Multi-Layer Sync Engine
-- Reality Mapping API
-- Cross-Layer Testing Framework
-
+- ระบบซิงค์ข้อมูลหลายชั้น (Multi-Layer Sync Engine)
+- API สำหรับทำแผนที่ความเป็นจริง (Reality Mapping API)
+- เฟรมเวิร์กสำหรับทดสอบข้ามชั้นของระบบ (Cross-Layer Testing Framework)
 ---
 
 # 9. Testing Strategy
 
 LEN จะใช้การทดสอบหลายระดับ:
 
-- Unit Testing (ทุกโมดูล)
-- Integration Testing (Cross-layer communication)
-- Load Testing (High Traffic Simulation)
-- Fault Injection Testing (Node Failure Simulation)
-- Security Testing (Encryption + Access Control)
+- Unit Testing (ทดสอบหน่วยในทุกโมดูล)
+- Integration Testing (ทดสอบการทำงานร่วมกันระหว่างหลายชั้นของระบบ)
+- Load Testing (ทดสอบภายใต้ปริมาณการใช้งานสูง)
+- Fault Injection Testing (ทดสอบโดยจำลองความล้มเหลวของ Node)
+- Security Testing (ทดสอบด้านความปลอดภัย เช่น การเข้ารหัสและการควบคุมสิทธิ์)
 
 ---
 
@@ -213,9 +212,9 @@ LEN จะใช้การทดสอบหลายระดับ:
 
 ## Deployment Model
 
-- Container-based Deployment (Docker)
-- Orchestrated via Kubernetes
-- CI/CD Pipeline (GitHub Actions)
+- การติดตั้งแบบใช้ Container (Docker)
+- บริหารจัดการด้วย Kubernetes
+- ใช้ CI/CD Pipeline (GitHub Actions)
 
 ---
 
@@ -223,10 +222,10 @@ LEN จะใช้การทดสอบหลายระดับ:
 
 | ความเสี่ยง | แนวทางลดความเสี่ยง |
 |-------------|---------------------|
-| AI Autonomy Risk | Implement Control Override Layer |
-| Quantum Instability | Fallback to Classical Routing |
-| Cognitive Overload | Human Awareness Throttling |
-| Privacy Breach | Identity-Bound Encryption |
+| ความเสี่ยงจาก AI ทำงานอิสระเกินไป | เพิ่มชั้นควบคุม Override เพื่อแทรกแซงได้ |
+| ความไม่เสถียรระดับควอนตัม | สลับไปใช้ Routing แบบดั้งเดิม (Classical) |
+| ภาระทางความคิดมากเกินไป | ควบคุมการสื่อสารตามความพร้อมของมนุษย์ |
+| การละเมิดความเป็นส่วนตัว | ใช้การเข้ารหัสแบบผูกกับตัวตน (Identity-Bound Encryption) |
 
 ---
 
@@ -245,11 +244,11 @@ Phase 6: 3 เดือน
 
 # 13. Success Metrics (KPIs)
 
-- Route Efficiency Improvement ≥ 30%
-- Self-Healing Recovery Time ≤ 5 seconds
+- การปรับปรุงประสิทธิภาพของเส้นทาง (Routing) ≥ 30%
+- เวลาการกู้คืนระบบอัตโนมัติ (Self-Healing) ≤ 5 วินาที
 - Packet Validation Accuracy ≥ 99.9%
-- Privacy Breach Incidents = 0
-- Consent Enforcement Accuracy = 100%
+- จำนวนเหตุการณ์การละเมิดความเป็นส่วนตัว = 0
+- ความแม่นยำในการบังคับใช้การยินยอม (Consent) = 100%
 
 ---
 
