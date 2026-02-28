@@ -11,7 +11,7 @@
 | วิธีการพัฒนา | Agile Scrum |
 | ระยะเวลา Sprint | 2 สัปดาห์ (14 วัน) |
 | ขนาดทีม | 5–7 คน |
-| กลยุทธ์ Branch | GitFlow |
+| Branching Strategy | GitFlow |
 | CI/CD | GitHub Actions |
 | Deployment | Docker + Kubernetes (ระยะถัดไป) |
 
