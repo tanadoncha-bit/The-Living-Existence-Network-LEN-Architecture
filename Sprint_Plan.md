@@ -29,7 +29,7 @@
 
 ---
 
-# 3. จังหวะการทำงานของ Sprint (Sprint Cadence)
+# 3. Sprint Cadence
 
 วัน 1: วางแผน Sprint  
 วัน 2–11: พัฒนา + Daily Standup  
@@ -68,7 +68,7 @@
 
 ---
 
-## 4.3 สถาปัตยกรรมสำหรับ Sprint Alpha
+## 4.3 Sprint Alpha Architecture
 
 โครงสร้างโมดูล:
 
