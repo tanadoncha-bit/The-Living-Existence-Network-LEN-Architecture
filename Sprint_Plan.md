@@ -271,4 +271,4 @@ KPIs ต่อ Sprint:
 
 Sprint Plan ฉบับนี้ทำให้ LEN พัฒนาอย่างเป็นระบบ  
 
-จาก Prototype → Adaptive → Secure → Conscious-Aware Network
+จาก ต้นแบบ → ระบบที่ปรับตัวได้ → ระบบที่ปลอดภัย → เครือข่ายที่มีการรับรู้และตระหนักรู้
