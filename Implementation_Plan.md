@@ -111,9 +111,9 @@ interface ExistencePacket {
 ```
 ## Deliverables
 
-- ETP v1.0 Prototype
-- Packet Validation System
-- Secure Transmission Channel
+- ต้นแบบ ETP เวอร์ชัน 1.0 (ETP v1.0 Prototype)
+- ระบบตรวจสอบความถูกต้องของแพ็กเก็ต (Packet Validation System)
+- ช่องทางการส่งข้อมูลที่ปลอดภัย (Secure Transmission Channel)
 
 ---
 
