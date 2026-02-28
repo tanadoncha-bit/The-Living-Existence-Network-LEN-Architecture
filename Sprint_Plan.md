@@ -250,7 +250,7 @@ KPIs ต่อ Sprint:
 ทุก Sprint ต้องมี:
 
 - Live Demo  
-- อัปเดตสถาปัตยกรรม  
+- อัปเดต Architecture
 - รายงาน Performance Metrics  
 - ประเมินความเสี่ยงใหม่  
 
