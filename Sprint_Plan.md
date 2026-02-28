@@ -87,6 +87,25 @@
 **คำอธิบาย:**  
 สร้างคลาส `Node` สำหรับจำลองสภาพแวดล้อมแบบ Distributed
 
+```python
+class Node:
+
+    def __init__(self, node_id):
+        self.node_id = node_id
+        self.connected_nodes = []
+        self.status = "ACTIVE"
+
+    def connect(self, node):
+        self.connected_nodes.append(node)
+
+    def send(self, message):
+        for node in self.connected_nodes:
+            node.receive(message)
+
+    def receive(self, message):
+        print(f"[{self.node_id}] received:", message)
+```
+
 #### Acceptance Criteria:
 
 - Node สามารถ connect กันได้  
@@ -96,6 +115,24 @@
 ---
 
 ### SA-02: Network State Model
+
+```python
+class NetworkState:
+
+    def __init__(self):
+        self.nodes = {}
+        self.routes = []
+
+    def add_node(self, node):
+        self.nodes[node.node_id] = node
+
+    def add_route(self, source, target, latency):
+        self.routes.append({
+            "source": source,
+            "target": target,
+            "latency": latency
+        })
+```
 
 #### Acceptance Criteria:
 
@@ -107,6 +144,11 @@
 
 ### SA-03: Basic Routing Algorithm
 
+```python
+def select_best_route(routes):
+    return min(routes, key=lambda r: r["latency"])
+```
+
 #### Acceptance Criteria:
 
 - เลือก route ที่มี latency ต่ำสุดได้  
@@ -115,6 +157,15 @@
 ---
 
 ### SA-04: Logging Module
+
+```python
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+def log_event(event):
+    logging.info(event)
+```
 
 #### Acceptance Criteria:
 
