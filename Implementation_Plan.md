@@ -41,9 +41,9 @@ LEN จะพัฒนาแบบ Phase-Based Iterative Development
 - สร้าง Logging & Telemetry System
 
 ## Deliverables
-- Node Server Prototype
-- Basic Routing Simulation
-- Network Monitoring Dashboard (MVP)
+- ต้นแบบเซิร์ฟเวอร์ Node (Node Server Prototype)
+- การจำลองการกำหนดเส้นทางพื้นฐาน (Basic Routing Simulation)
+- แดชบอร์ดสำหรับติดตามสถานะเครือข่าย (เวอร์ชันเริ่มต้น - MVP)
 
 ---
 
