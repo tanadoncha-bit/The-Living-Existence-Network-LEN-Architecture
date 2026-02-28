@@ -21,11 +21,11 @@
 LEN จะพัฒนาแบบ Phase-Based Iterative Development
 
 แนวทางหลัก:
-- Modular Architecture
-- Microservice-based Deployment
-- API-First Design
-- Secure-by-Default
-- Test-Driven Development (TDD)
+- สถาปัตยกรรมแบบแยกโมดูล (Modular Architecture)
+- การติดตั้งระบบแบบไมโครเซอร์วิส (Microservice-based Deployment)
+- การออกแบบโดยยึด API เป็นหลัก (API-First Design)
+- ความปลอดภัยเป็นค่าเริ่มต้น (Secure-by-Default)
+- การพัฒนาโดยอิงการทดสอบ (Test-Driven Development: TDD)
 
 ---
 
