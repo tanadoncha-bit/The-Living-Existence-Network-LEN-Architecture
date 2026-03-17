@@ -10,7 +10,7 @@
 | โครงการ | The Living Existence Network (LEN) |
 | วิธีการพัฒนา | Agile Scrum |
 | ระยะเวลา Sprint | 2 สัปดาห์ (14 วัน) |
-| ขนาดทีม | 5–7 คน |
+| ขนาดทีม | 5 คน |
 | Branching Strategy | GitFlow |
 | CI/CD | GitHub Actions |
 | Deployment | Docker + Kubernetes (ระยะถัดไป) |
