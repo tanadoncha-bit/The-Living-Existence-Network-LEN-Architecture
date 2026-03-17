@@ -9,9 +9,9 @@
 
 | เอกสาร | เหมาะสำหรับ | เนื้อหา |
 |--------|------------|---------|
-| [`README.md`](./README.md) | ทุกคน | ภาพรวมโปรเจกต์ วิธีรันโค้ด ผลทดสอบ |
-| [`special-edition.md`](./docs/special-edition.md) | ผู้บริหาร / นักลงทุน / ผู้สนใจทั่วไป | ปรัชญาและวิสัยทัศน์ของ LEN ไม่มีสมการ |
-| [`demo.html`](./demo.html) | ทุกคน | Interactive demo เปิดใน browser ได้เลย |
+| [`README.md`](../README.md) | ทุกคน | ภาพรวมโปรเจกต์ วิธีรันโค้ด ผลทดสอบ |
+| [`special-edition.md`](./special-edition.md) | ผู้บริหาร / นักลงทุน / ผู้สนใจทั่วไป | ปรัชญาและวิสัยทัศน์ของ LEN ไม่มีสมการ |
+| [`demo.html`](../demo.html) | ทุกคน | Interactive demo เปิดใน browser ได้เลย |
 
 ---
 
@@ -19,10 +19,10 @@
 
 | เอกสาร | เนื้อหา |
 |--------|---------|
-| [`Architecture_Spec.md`](./docs/Architecture_Spec.md) | สเปกสถาปัตยกรรมทั้งระบบ 6 layers, protocol, data structures |
-| [`Implementation_Plan.md`](./docs/Implementation_Plan.md) | แผนพัฒนา 6 Phase พร้อม deliverables และ timeline |
-| [`Coding.md`](./src/Coding.md) | Source code หลัก + Unit Tests 34 tests |
-| [`test_results.md`](./src/test_results.md) | ผลรัน Unit Tests จริง 34/34 passed |
+| [`Architecture_Spec.md`](./Architecture_Spec.md) | สเปกสถาปัตยกรรมทั้งระบบ 6 layers, protocol, data structures |
+| [`Implementation_Plan.md`](./Implementation_Plan.md) | แผนพัฒนา 6 Phase พร้อม deliverables และ timeline |
+| [`Coding.md`](../src/Coding.md) | Source code หลัก + Unit Tests 34 tests |
+| [`test_results.md`](../src/test_results.md) | ผลรัน Unit Tests จริง 34/34 passed |
 
 ---
 
@@ -30,9 +30,9 @@
 
 | เอกสาร | เนื้อหา |
 |--------|---------|
-| [`Formalization.md`](./docs/Formalization.md) | Mathematical formalization ครบถ้วน — DAFT operators, สูตร, domain mapping |
-| [`DAFT-Extended-Edition.md`](./docs/DAFT-Extended-Edition.md) | อธิบาย DAFT theory ที่เป็น backbone ของ LEN แบบอ่านง่าย |
-| [`Book_Theoretical.md`](./docs/Book_Theoretical.md) | หนังสือทฤษฎีฉบับเต็ม ครอบคลุมทั้ง 10 บท |
+| [`Formalization.md`](./Formalization.md) | Mathematical formalization ครบถ้วน — DAFT operators, สูตร, domain mapping |
+| [`DAFT-Extended-Edition.md`](./DAFT-Extended-Edition.md) | อธิบาย DAFT theory ที่เป็น backbone ของ LEN แบบอ่านง่าย |
+| [`Book_Theoretical.md`](./Book_Theoretical.md) | หนังสือทฤษฎีฉบับเต็ม ครอบคลุมทั้ง 10 บท |
 
 ---
 
@@ -40,8 +40,8 @@
 
 | เอกสาร | เนื้อหา |
 |--------|---------|
-| [`Sprint_Plan.md`](./planning/Sprint_Plan.md) | Sprint Alpha, Sprint 3, Sprint 4 — task breakdown ละเอียด |
-| [`Role_and_Responsibility.md`](./planning/Role_and_Responsibility.md) | RACI matrix และ decision authority |
+| [`Sprint_Plan.md`](../planning/Sprint_Plan.md) | Sprint Alpha, Sprint 3, Sprint 4 — task breakdown ละเอียด |
+| [`Role_and_Responsibility.md`](../planning/Role_and_Responsibility.md) | RACI matrix และ decision authority |
 
 ---
 
