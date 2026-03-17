@@ -4,7 +4,7 @@
 **Python version:** 3.12.3  
 **Test framework:** unittest (built-in)  
 **Total tests:** 34  
-**Result:** ✅ ALL PASSED
+**Result:** ALL PASSED
 
 ---
 
