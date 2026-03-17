@@ -37,7 +37,6 @@ Evolution Engine วิเคราะห์สถานะเครือข่
 Reality Integration Layer      ← เชื่อมโลกจริง โลกเสมือน และระบบจำลอง
 Human Awareness Layer          ← ป้องกัน Cognitive Overload, บังคับ Consent
 Existence Communication Layer  ← ExistencePacket + ETP Protocol
-Structural Privacy Engine      ← Identity-Bound Encryption, Zero-Visibility Routing
 Evolution Engine               ← ปรับ topology อัตโนมัติ
 Infrastructure Layer           ← Node runtime, Routing, Self-Healing
 ```
@@ -46,22 +45,46 @@ Infrastructure Layer           ← Node runtime, Routing, Self-Healing
 
 ## โครงสร้าง Repository
 
+```
+├── README.md
+├── demo.html
+├── docs/
+│   ├── Architecture_Spec.md
+│   ├── Implementation_Plan.md
+│   ├── Formalization.md
+│   ├── Book_Theoretical.md
+│   ├── DAFT-Extended-Edition.md
+│   ├── special-edition.md
+│   └── Edition-Comparison.md
+├── planning/
+│   ├── Sprint_Plan.md
+│   └── Role_and_Responsibility.md
+└── src/
+    ├── Coding.md
+    └── test_results.md
+```
+
 | ไฟล์ | คำอธิบาย |
 |------|-----------|
 | `README.md` | ภาพรวมโปรเจกต์ (ไฟล์นี้) |
-| `Architecture_Spec.md` | สเปกสถาปัตยกรรมระบบทั้งหมด |
-| `Implementation_Plan.md` | แผนพัฒนาแบ่งเป็น 6 Phase |
-| `Coding.md` | Source code หลัก + Unit Tests (25 tests) |
-| `Sprint_Plan.md` | Sprint Alpha, Sprint 3 & Sprint 4 |
-| `Role_and_Responsibility.md` | บทบาทและความรับผิดชอบของทีม |
-| `test_results.md` | ผลการรัน Unit Tests จริง |
 | `demo.html` | Interactive demo — เปิดใน browser ได้เลย |
+| `docs/Architecture_Spec.md` | สเปกสถาปัตยกรรมระบบทั้งหมด |
+| `docs/Implementation_Plan.md` | แผนพัฒนาแบ่งเป็น 6 Phase |
+| `docs/Formalization.md` | Mathematical formalization + DAFT integration |
+| `docs/Book_Theoretical.md` | หนังสือทฤษฎีฉบับเต็ม 10 บท |
+| `docs/DAFT-Extended-Edition.md` | อธิบาย DAFT theory แบบอ่านง่าย |
+| `docs/special-edition.md` | ปรัชญาและวิสัยทัศน์ของ LEN |
+| `docs/Edition-Comparison.md` | คู่มือเลือกอ่านเอกสาร |
+| `planning/Sprint_Plan.md` | Sprint Alpha, Sprint 3 & Sprint 4 |
+| `planning/Role_and_Responsibility.md` | บทบาทและความรับผิดชอบของทีม |
+| `src/Coding.md` | Source code หลัก + Unit Tests (34 tests) |
+| `src/test_results.md` | ผลการรัน Unit Tests จริง |
 
 ---
 
 ## การติดตั้งและรันโค้ด
 
-**ข้อกำหนด:** Python 3.12 ขึ้นไป ไม่ต้อง install library เพิ่ม
+**ข้อกำหนด:** Python 3.10 ขึ้นไป ไม่ต้อง install library เพิ่ม
 
 ```bash
 # 1. Clone repository
@@ -110,8 +133,7 @@ Demo แสดง 6 ขั้นตอนแบบ step-by-step:
 | TestNetworkState | 14 | ผ่านทั้งหมด |
 | TestEvolutionEngine | 2 | ผ่านทั้งหมด |
 | TestConsentManager | 4 | ผ่านทั้งหมด |
-| TestDAFTClassifier | 9 | ผ่านทั้งหมด |
-| **รวม** | **34** | **34/34** |
+| **รวม** | **25** | **25/25** |
 
 ดูผลการทดสอบแบบละเอียดได้ที่ [`test_results.md`](./test_results.md)
 
