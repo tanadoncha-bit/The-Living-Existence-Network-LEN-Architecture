@@ -4,7 +4,7 @@
 **Python version:** 3.12.3  
 **Test framework:** unittest (built-in)  
 **Total tests:** 25  
-**Result:** ✅ ALL PASSED
+**Result:** ALL PASSED
 
 ---
 
@@ -95,28 +95,28 @@ OK
 
 | Test ID | Test Name | Scenario | Result |
 |---------|-----------|----------|--------|
-| TC-NL-01 | test_default_status_is_active | New node starts as ACTIVE | ✅ PASS |
-| TC-NL-02 | test_update_status | Status transitions correctly | ✅ PASS |
-| TC-NL-03 | test_is_available_when_active | ACTIVE node is routable | ✅ PASS |
-| TC-NL-04 | test_is_available_when_degraded | DEGRADED node is still routable | ✅ PASS |
-| TC-NL-05 | test_not_available_when_failed | FAILED node excluded from routing | ✅ PASS |
-| TC-NS-01 | test_add_node | Node stored correctly | ✅ PASS |
-| TC-NS-02 | test_add_edge_bidirectional | Edge is undirected | ✅ PASS |
-| TC-NS-03 | test_remove_edge | Edge cleared in both directions | ✅ PASS |
-| TC-NS-04 | test_remove_node_cleans_edges | Node removal cascades to edges | ✅ PASS |
-| TC-NS-05 | test_add_edge_unknown_node_raises | Invalid edge raises KeyError | ✅ PASS |
-| TC-NS-06 | test_negative_latency_raises | Negative latency raises ValueError | ✅ PASS |
-| TC-NS-07 | test_direct_route | Single-hop routing correct | ✅ PASS |
-| TC-NS-08 | test_prefers_indirect_low_latency_route | Dijkstra selects fastest path | ✅ PASS |
-| TC-NS-09 | test_no_path_raises | Isolated node raises RouteNotFoundError | ✅ PASS |
-| TC-NS-10 | test_unknown_source_raises | Ghost source raises ValueError | ✅ PASS |
-| TC-NS-11 | test_cyclic_graph_no_infinite_loop | Cycle graph terminates correctly | ✅ PASS |
-| TC-NS-12 | test_skips_failed_node | FAILED node bypassed in routing | ✅ PASS |
-| TC-NS-13 | test_heal_node | Node recovers to ACTIVE | ✅ PASS |
-| TC-NS-14 | test_heal_unknown_node_raises | Healing ghost node raises KeyError | ✅ PASS |
-| TC-EE-01 | test_prunes_slow_edges | Edges > 100ms are pruned | ✅ PASS |
-| TC-EE-02 | test_keeps_fast_edges | Edges <= 100ms are preserved | ✅ PASS |
-| TC-CM-01 | test_default_no_consent | No consent by default | ✅ PASS |
-| TC-CM-02 | test_grant_consent | Grant allows transmission | ✅ PASS |
-| TC-CM-03 | test_revoke_consent | Revoke blocks transmission | ✅ PASS |
-| TC-CM-04 | test_consent_is_directional | Consent is one-directional | ✅ PASS |
+| TC-NL-01 | test_default_status_is_active | New node starts as ACTIVE | PASS |
+| TC-NL-02 | test_update_status | Status transitions correctly | PASS |
+| TC-NL-03 | test_is_available_when_active | ACTIVE node is routable | PASS |
+| TC-NL-04 | test_is_available_when_degraded | DEGRADED node is still routable | PASS |
+| TC-NL-05 | test_not_available_when_failed | FAILED node excluded from routing | PASS |
+| TC-NS-01 | test_add_node | Node stored correctly | PASS |
+| TC-NS-02 | test_add_edge_bidirectional | Edge is undirected | PASS |
+| TC-NS-03 | test_remove_edge | Edge cleared in both directions | PASS |
+| TC-NS-04 | test_remove_node_cleans_edges | Node removal cascades to edges | PASS |
+| TC-NS-05 | test_add_edge_unknown_node_raises | Invalid edge raises KeyError | PASS |
+| TC-NS-06 | test_negative_latency_raises | Negative latency raises ValueError | PASS |
+| TC-NS-07 | test_direct_route | Single-hop routing correct | PASS |
+| TC-NS-08 | test_prefers_indirect_low_latency_route | Dijkstra selects fastest path | PASS |
+| TC-NS-09 | test_no_path_raises | Isolated node raises RouteNotFoundError | PASS |
+| TC-NS-10 | test_unknown_source_raises | Ghost source raises ValueError | PASS |
+| TC-NS-11 | test_cyclic_graph_no_infinite_loop | Cycle graph terminates correctly | PASS |
+| TC-NS-12 | test_skips_failed_node | FAILED node bypassed in routing | PASS |
+| TC-NS-13 | test_heal_node | Node recovers to ACTIVE | PASS |
+| TC-NS-14 | test_heal_unknown_node_raises | Healing ghost node raises KeyError | PASS |
+| TC-EE-01 | test_prunes_slow_edges | Edges > 100ms are pruned | PASS |
+| TC-EE-02 | test_keeps_fast_edges | Edges <= 100ms are preserved | PASS |
+| TC-CM-01 | test_default_no_consent | No consent by default | PASS |
+| TC-CM-02 | test_grant_consent | Grant allows transmission | PASS |
+| TC-CM-03 | test_revoke_consent | Revoke blocks transmission | PASS |
+| TC-CM-04 | test_consent_is_directional | Consent is one-directional | PASS |
