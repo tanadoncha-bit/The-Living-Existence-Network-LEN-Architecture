@@ -114,14 +114,15 @@ Methodology: Agile Scrum
 
 | งาน | Architect | Specialist | Engineer | DevOps | Tester/QA |
 |------|-----------|---------|------------|--------|----|
-| ออกแบบสถาปัตยกรรม | R | C | C | C | I |
-| พัฒนา Node | C | R | C | I | I |
-| พัฒนา Evolution Logic | C | C | R | I | I |
-| ตั้งค่า CI/CD | I | I | I | R | C |
-| จัดทำเอกสาร | C | I | I | I | R |
+| ออกแบบสถาปัตยกรรม | **A/R** | C | C | C | I |
+| พัฒนา Node | A | **R** | C | I | I |
+| พัฒนา Evolution Logic | A | C | **R** | I | I |
+| ตั้งค่า CI/CD | I | I | I | **A/R** | C |
+| จัดทำเอกสาร | C | I | I | I | **A/R** |
 
 **Legend:**  
 - **R** = Responsible (ผู้รับผิดชอบหลักในการลงมือทำ)  
 - **A** = Accountable (ผู้รับผิดชอบผลลัพธ์ขั้นสุดท้าย)  
+- **A/R** = งานที่ผู้รับผิดชอบและผู้ accountable เป็นคนเดียวกัน  
 - **C** = Consulted (ผู้ให้คำปรึกษา)  
-- **I** = Informed (ผู้รับทราบข้อมูล)  
+- **I** = Informed (ผู้รับทราบข้อมูล)
