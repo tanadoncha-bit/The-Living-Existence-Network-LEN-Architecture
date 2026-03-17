@@ -3,8 +3,8 @@
 
 **Python version:** 3.12.3  
 **Test framework:** unittest (built-in)  
-**Total tests:** 25  
-**Result:** ALL PASSED
+**Total tests:** 34  
+**Result:** ✅ ALL PASSED
 
 ---
 
@@ -87,7 +87,8 @@ OK
 | TestNetworkState | 14 | 14 | 0 | NetworkState, Routing, Self-Healing |
 | TestEvolutionEngine | 2 | 2 | 0 | EvolutionEngine |
 | TestConsentManager | 4 | 4 | 0 | ConsentManager |
-| **Total** | **25** | **25** | **0** | |
+| TestDAFTClassifier | 9 | 9 | 0 | DAFTClassifier (4-state, readiness, decay) |
+| **Total** | **34** | **34** | **0** | |
 
 ---
 
