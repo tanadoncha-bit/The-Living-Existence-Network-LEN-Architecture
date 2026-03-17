@@ -328,7 +328,7 @@ def daft_classify_node_pair(node_i_state: float, node_j_state: float,
 
     if rho <= 1.05:
         return "BOUNDARY"
-    elif O4 < 0:           # xi > xj: node i dominant
+    elif O4 > 0:           # xi > xj: node i dominant
         return "CONSTRUCTIVE"
     else:                  # xi < xj: node j dominant
         return "DESTRUCTIVE"
