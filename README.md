@@ -1,86 +1,149 @@
-# The Living Existence Network (LEN) Architecture
+# The Living Existence Network (LEN)
 
-ยินดีต้อนรับสู่ **The Living Existence Network (LEN)**  
-สถาปัตยกรรมเครือข่ายแนวคิดใหม่ที่ออกแบบให้เป็น “โครงสร้างดิจิทัลที่มีชีวิต” สามารถปรับตัว พัฒนา และปกป้องตัวตนของผู้ใช้งานได้โดยอัตโนมัติ
-
----
-
-## ภาพรวมของโปรเจกต์
-
-Living Existence Network (LEN) คือแนวคิดสถาปัตยกรรมเครือข่ายแบบกระจายศูนย์ (Distributed Architecture) ที่ก้าวข้ามระบบเครือข่ายแบบดั้งเดิม
-
-แทนที่เครือข่ายจะเป็นเพียงระบบส่งข้อมูล (Packet-based communication)  
-LEN ถูกออกแบบให้เป็นระบบที่:
-
-- ปรับโครงสร้างตัวเองได้อัตโนมัติ (Self-Adaptive Topology)
-- มีการตัดสินใจอัจฉริยะด้านการส่งข้อมูล (Intelligent Routing)
-- ปกป้องความเป็นส่วนตัวในระดับโครงสร้าง (Privacy by Architecture)
-- รองรับการเชื่อมต่อระหว่างโลกจริง โลกเสมือน และระบบจำลอง
-
-เป้าหมายของ LEN คือการสร้าง “Digital Infrastructure รุ่นใหม่”  
-ที่สามารถเติบโต ฟื้นฟู และวิวัฒนาการได้เหมือนสิ่งมีชีวิต
+> "โครงสร้างดิจิทัลที่มีชีวิต — ปรับตัว วิวัฒน์ และปกป้องการดำรงอยู่ของผู้ใช้โดยอัตโนมัติ"
 
 ---
 
-## วิสัยทัศน์ (Vision)
+## ภาพรวม
 
-LEN มุ่งเปลี่ยนระบบเครือข่ายจากโครงสร้างแบบกลไก (Mechanical Infrastructure)  
-ไปสู่โครงสร้างแบบมีชีวิต (Living Digital Structure)
+**The Living Existence Network (LEN)** คือสถาปัตยกรรมเครือข่ายแบบกระจายศูนย์รุ่นใหม่ที่ก้าวข้ามโมเดล TCP/IP แบบดั้งเดิม
 
-โดยเน้น:
-
-- การทำงานแบบอัตโนมัติของโหนด (Autonomous Node Behavior)
-- การฟื้นฟูระบบโดยไม่ต้องหยุดทำงาน (Zero-Downtime Self-Healing)
-- ความเป็นส่วนตัวที่ฝังอยู่ในสถาปัตยกรรม
-- ความสามารถในการขยายตัวและความยืดหยุ่นระดับสูง
+แทนที่จะเป็นเพียงระบบส่ง packet LEN ถูกออกแบบให้เป็นโครงสร้างที่ **มีชีวิต** — สามารถปรับ topology ตัวเองได้อัตโนมัติ ฟื้นฟูเมื่อเกิดความผิดพลาด และปกป้องความเป็นส่วนตัวในระดับสถาปัตยกรรม ไม่ใช่แค่ระดับ application
 
 ---
 
-## คุณสมบัติหลักของ LEN
+## คุณสมบัติหลัก
 
-### 1. Self-Evolving Distributed Network
+**Self-Evolving Topology**  
+Evolution Engine วิเคราะห์สถานะเครือข่ายและปรับ topology อัตโนมัติ — ตัดเส้นทางที่ช้า เพิ่มเส้นทางใหม่เมื่อ traffic หนาแน่น โดยไม่ต้องหยุดระบบ
 
-- โหนดสามารถปรับตัวตามสถานะของเครือข่าย
-- เส้นทางการส่งข้อมูลใช้ AI inference
-- ไม่มีจุดควบคุมศูนย์กลาง (Decentralized Core)
+**Zero-Downtime Self-Healing**  
+เมื่อ Node ล้มเหลว ระบบตรวจจับและหาเส้นทางสำรองในระดับมิลลิวินาที Node สามารถฟื้นฟูตัวเองผ่าน lifecycle: ACTIVE → DEGRADED → FAILED → HEALING → ACTIVE
 
----
+**Structural Privacy**  
+ข้อมูลผูกกับตัวตนโดยโครงสร้าง (Identity-Bound Encryption) ไม่สามารถเข้าถึงได้หากไม่ใช่เจ้าของ ไม่ต้องพึ่ง policy ระดับ application
 
-### 2. Structural Privacy
+**Consent-Before-Transmit**  
+ไม่มี ExistencePacket ใดถูกส่งได้โดยไม่ได้รับการยินยอมจากผู้รับก่อน บังคับใช้ผ่าน ConsentManager ในระดับ protocol
 
-- การเข้ารหัสผูกกับตัวตน (Identity-Bound Encryption)
-- การควบคุมสิทธิ์แบบ Zero-Visibility
-- ออกแบบให้ข้อมูลมองเห็นเฉพาะผู้ที่เกี่ยวข้องจริง
-
----
-
-### 3. Multi-Reality Integration
-
-LEN รองรับการทำงานข้ามมิติของระบบ ได้แก่:
-
-- สภาพแวดล้อมทางกายภาพ (Physical Layer)
-- โลกเสมือน (Virtual Layer)
-- ระบบจำลอง (Simulation Layer)
-
-ทำให้สามารถเชื่อมสถานะ “การดำรงอยู่” ได้หลายรูปแบบพร้อมกัน
+**Multi-Reality Integration**  
+รองรับการเชื่อมต่อข้าม Physical, Virtual และ Simulation layers พร้อมกัน
 
 ---
 
-## โครงสร้างภายใน Repository
+## สถาปัตยกรรม 5 ชั้น
+
+```
+Reality Integration Layer      ← เชื่อมโลกจริง โลกเสมือน และระบบจำลอง
+Human Awareness Layer          ← ป้องกัน Cognitive Overload, บังคับ Consent
+Existence Communication Layer  ← ExistencePacket + ETP Protocol
+Evolution Engine               ← ปรับ topology อัตโนมัติ
+Infrastructure Layer           ← Node runtime, Routing, Self-Healing
+```
+
+---
+
+## โครงสร้าง Repository
 
 | ไฟล์ | คำอธิบาย |
 |------|-----------|
-| `Architecture_Spec.md` | เอกสารสเปกสถาปัตยกรรมระบบหลัก |
-| `Implementation_Plan.md` | แผนพัฒนาเป็นเฟส |
-| `Coding.md` | แนวทางมาตรฐานการเขียนโค้ด |
-| `Role_and_Responsibility.md` | โครงสร้างบทบาททีมงาน |
-| `Sprint_Plan.md` | แผนการทำงานแบบ Sprint |
+| `README.md` | ภาพรวมโปรเจกต์ (ไฟล์นี้) |
+| `Architecture_Spec.md` | สเปกสถาปัตยกรรมระบบทั้งหมด |
+| `Implementation_Plan.md` | แผนพัฒนาแบ่งเป็น 6 Phase |
+| `Coding.md` | Source code หลัก + Unit Tests (25 tests) |
+| `Sprint_Plan.md` | Sprint Alpha, Sprint 3 & Sprint 4 |
+| `Role_and_Responsibility.md` | บทบาทและความรับผิดชอบของทีม |
+| `test_results.md` | ผลการรัน Unit Tests จริง |
+| `demo.html` | Interactive demo — เปิดใน browser ได้เลย |
 
 ---
 
-## วิธีเริ่มต้นใช้งาน
+## การติดตั้งและรันโค้ด
 
-1. Clone repository
+**ข้อกำหนด:** Python 3.10 ขึ้นไป ไม่ต้อง install library เพิ่ม
 
 ```bash
+# 1. Clone repository
 git clone https://github.com/tanadoncha-bit/The-Living-Existence-Network-LEN-Architecture.git
+cd The-Living-Existence-Network-LEN-Architecture
+
+# 2. รัน Demo + Unit Tests
+python len_core.py
+```
+
+**ผลที่คาดหวัง:**
+```
+====================================================
+  LEN (Living Existence Network) — Core Demo
+====================================================
+
+[ROUTING]   Alpha → Delta
+            Path    : Alpha → Gamma → Delta
+            Latency : 10.0ms
+...
+Ran 25 tests in 0.002s
+OK
+```
+
+---
+
+## Interactive Demo
+
+เปิดไฟล์ `demo.html` ในเบราว์เซอร์ได้เลย ไม่ต้อง install อะไรเพิ่ม
+
+Demo แสดง 6 ขั้นตอนแบบ step-by-step:
+1. การสร้างเครือข่าย
+2. การค้นหาเส้นทาง (Dijkstra Algorithm)
+3. การจำลอง Node ล้มเหลว
+4. การฟื้นฟูตัวเอง (Self-Healing)
+5. Evolution Engine ตัดเส้นทางช้า
+6. Consent Manager
+
+---
+
+## ผลการทดสอบ
+
+| Test Suite | จำนวน Tests | ผลลัพธ์ |
+|------------|-------------|---------|
+| TestNodeLifecycle | 5 | ผ่านทั้งหมด |
+| TestNetworkState | 14 | ผ่านทั้งหมด |
+| TestEvolutionEngine | 2 | ผ่านทั้งหมด |
+| TestConsentManager | 4 | ผ่านทั้งหมด |
+| **รวม** | **25** | **25/25** |
+
+ดูผลการทดสอบแบบละเอียดได้ที่ [`test_results.md`](./test_results.md)
+
+---
+
+## Sprint Progress
+
+| Sprint | เป้าหมาย | สถานะ |
+|--------|---------|-------|
+| Sprint Alpha | Node Runtime, Basic Routing, Unit Tests | เสร็จสิ้น |
+| Sprint 3 | Bug Fixes, Domain Mapping, CI/CD Pipeline | เสร็จสิ้น |
+| Sprint 4 | Maturity Metrics, Ethics/Governance, MVP | เสร็จสิ้น |
+
+---
+
+## ทีมพัฒนา
+
+| ชื่อ | รหัสนักศึกษา | บทบาท |
+|------|-------------|-------|
+| นายธนดล ไชยศิลา | 673380585-0 | Architect |
+| นางสาวนันทพร ลุนทอง | 673380409-0 | Tester/QA |
+| นางสาวปรายฝน ฮกเซ็ง | 673380591-5 | Engineer |
+| นายกฤติธี ศรีใสย์ | 673380572-9 | Specialist |
+| นายคมชาญ วรสาร | 673380396-3 | DevOps |
+
+---
+
+## Project Artifacts
+
+- **GitHub Repository** — โค้ดและเอกสารทั้งหมด
+- **YouTube VDO** — วิดีโออธิบายภาพรวม LEN
+- **Short Film** — นำเสนอวิสัยทัศน์ LEN ผ่านการเล่าเรื่อง
+- **NotebookLM** — เอกสารทั้งหมด พร้อม Audio Overview และ Quiz
+
+---
+
+*The Living Existence Network — Digital Infrastructure สำหรับอารยธรรมยุคถัดไป*
