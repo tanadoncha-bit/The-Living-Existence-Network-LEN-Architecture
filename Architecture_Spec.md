@@ -35,12 +35,14 @@ graph TD
 A[Reality Integration Layer]
 B[Human Awareness Layer]
 C[Existence Communication Layer]
+SP[Structural Privacy Engine]
 D[Evolution Engine]
 E[Infrastructure Layer]
 
 A --> B
 B --> C
-C --> D
+C --> SP
+SP --> D
 D --> E
 ```
 
@@ -212,6 +214,3 @@ The Living Existence Network (LEN) เป็นแนวคิดสถาปั
 ที่ผสานการวิวัฒน์ ความเป็นส่วนตัว การรับรู้ของมนุษย์ และการรวมหลายระดับความจริง
 
 LEN คือโครงสร้างพื้นฐานดิจิทัลสำหรับอารยธรรมยุคถัดไป
-
-
-
