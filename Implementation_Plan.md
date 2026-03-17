@@ -62,18 +62,26 @@ LEN จะพัฒนาแบบ Phase-Based Iterative Development
 
 ```python
 class EvolutionEngine:
+    """
+    Implementation จริงอยู่ใน Coding.md
+    โครงสร้างด้านล่างแสดง public interface ของ module
+    """
 
-    def analyze_network_state(self, network_state):
-        pass
+    EFFICIENCY_THRESHOLD  = 100.0   # ms — routes above this are pruned
+    TRAFFIC_DENSITY_LIMIT = 5       # edges — log warning above this
 
-    def calculate_route_efficiency(self, route):
-        pass
+    def evolve(self, network: NetworkState):
+        """Entry point: prune slow routes + handle high density"""
+        self._prune_slow_routes(network)
+        self._handle_high_density(network)
 
-    def mutate_topology(self):
-        pass
+    def _prune_slow_routes(self, network: NetworkState):
+        """Remove all edges with latency > EFFICIENCY_THRESHOLD"""
+        pass  # see Coding.md for full implementation
 
-    def spawn_new_path(self):
-        pass
+    def _handle_high_density(self, network: NetworkState):
+        """Log warning when total edges exceed TRAFFIC_DENSITY_LIMIT"""
+        pass  # see Coding.md for full implementation
 ```
 ## Deliverables
 
@@ -100,7 +108,7 @@ class EvolutionEngine:
 
 ```typescript
 interface ExistencePacket {
-    version: "1.0"
+    version: "2.0"
     entityId: string
     cognitiveStateVector: number[]
     intentSignature: string
