@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEN Network Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#fff; --bg2:#f8f9fa; --bg3:#f1f3f5; --border:#dee2e6;
+  --text:#212529; --muted:#6c757d;
+  --blue:#2563eb; --blue-bg:#eff6ff;
+  --amber:#d97706; --amber-bg:#fffbeb;
+  --red:#dc2626; --red-bg:#fef2f2;
+  --green:#16a34a; --green-bg:#f0fdf4;
+  --purple:#7c3aed; --purple-bg:#faf5ff;
+}
+body {
+  font-family: 'Sarabun', system-ui, sans-serif;
+  background: var(--bg); color: var(--text);
+  height: 100vh; display: flex; flex-direction: column; font-size: 14px;
+}
+
+/* header */
+.header {
+  padding: 12px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-title { font-weight: 600; font-size: 15px; }
+.header-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.badge {
+  font-size: 11px; padding: 3px 10px; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted);
+  background: var(--bg2); font-family: 'IBM Plex Mono', monospace;
+}
+
+/* layout */
+.body { flex: 1; display: grid; grid-template-columns: 1fr 290px; overflow: hidden; }
+.canvas-wrap { position: relative; overflow: hidden; border-right: 1px solid var(--border); }
+canvas { width: 100%; height: 100%; display: block; }
+
+/* sidebar */
+.sidebar { display: flex; flex-direction: column; overflow: hidden; }
+.sb-section { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.sb-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+}
+
+/* step card */
+.step-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px;
+}
+.step-num   { font-size: 11px; font-family: 'IBM Plex Mono',monospace; color: var(--blue); margin-bottom: 3px; }
+.step-title { font-weight: 600; font-size: 14px; margin-bottom: 5px; }
+.step-desc  { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+/* node table */
+.node-table { width: 100%; border-collapse: collapse; }
+.node-table tr { border-bottom: 1px solid var(--bg3); }
+.node-table tr:last-child { border-bottom: none; }
+.node-table td { padding: 5px 2px; font-size: 12px; }
+.node-table td:first-child { color: var(--muted); font-family: 'IBM Plex Mono',monospace; font-size: 11px; }
+.pill {
+  display: inline-block; font-size: 11px;
+  padding: 2px 8px; border-radius: 3px; font-weight: 500;
+}
+.p-active   { background: var(--blue-bg);  color: var(--blue); }
+.p-degraded { background: var(--amber-bg); color: var(--amber); }
+.p-failed   { background: var(--red-bg);   color: var(--red); }
+.p-healing  { background: var(--green-bg); color: var(--green); }
+
+/* consent */
+.consent-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 0; border-bottom: 1px solid var(--bg3); font-size: 12px;
+}
+.consent-row:last-child { border-bottom: none; }
+.consent-pair { font-family: 'IBM Plex Mono',monospace; color: var(--muted); font-size: 11px; }
+.cv-true  { color: var(--green); font-weight: 600; }
+.cv-false { color: var(--red);   font-weight: 600; }
+
+/* log */
+.log-wrap { flex: 1; overflow-y: auto; padding: 10px 14px; }
+.log-line {
+  padding: 4px 0; font-size: 12px; line-height: 1.6;
+  border-bottom: 1px solid #f8f9fa; color: var(--muted);
+}
+.log-line.info  { color: var(--blue); }
+.log-line.ok    { color: var(--green); }
+.log-line.warn  { color: var(--amber); }
+.log-line.err   { color: var(--red); }
+.log-line.route { color: var(--purple); }
+
+/* footer */
+.footer {
+  padding: 10px 20px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px; background: var(--bg);
+}
+.btn-next {
+  font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600;
+  background: var(--blue); color: #fff; border: none;
+  padding: 8px 24px; border-radius: 5px; cursor: pointer; transition: background .15s;
+}
+.btn-next:hover:not(:disabled) { background: #1d4ed8; }
+.btn-next:disabled { background: var(--bg3); color: var(--muted); cursor: default; }
+.btn-reset {
+  font-family: 'Sarabun', sans-serif; font-size: 14px; background: transparent;
+  color: var(--muted); border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 5px; cursor: pointer; transition: all .15s;
+}
+.btn-reset:hover { color: var(--text); border-color: #adb5bd; }
+.route-chip {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  padding: 5px 12px; border-radius: 4px;
+  background: var(--purple-bg); color: var(--purple); border: 1px solid #ddd6fe;
+  display: none;
+}
+.progress { display: flex; gap: 5px; align-items: center; margin-left: auto; }
+.prog-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .3s; }
+.prog-dot.done   { background: var(--blue); }
+.prog-dot.active { background: var(--blue); box-shadow: 0 0 0 3px var(--blue-bg); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">The Living Existence Network (LEN) — การสาธิตระบบ</div>
+    <div class="header-sub">Sprint Alpha &amp; Sprint 3 · Python 3.12 · ผ่านการทดสอบ 25/25</div>
+  </div>
+  <span class="badge" id="step-badge">ขั้นที่ 1 / 6</span>
+</div>
+
+<div class="body">
+  <div class="canvas-wrap"><canvas id="canvas"></canvas></div>
+
+  <div class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">ขั้นตอนปัจจุบัน</div>
+      <div class="step-card">
+        <div class="step-num" id="step-num">ขั้นที่ 01</div>
+        <div class="step-title" id="step-title">การสร้างเครือข่าย</div>
+        <div class="step-desc"  id="step-desc">สร้าง Node 6 ตัว และเชื่อมต่อกันด้วย Edge ที่มีค่า Latency กำกับแต่ละเส้น แสดงให้เห็นโครงสร้างพื้นฐานของ LEN</div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">สถานะ Node</div>
+      <table class="node-table" id="node-table"></table>
+    </div>
+
+    <div class="sb-section" id="consent-section" style="display:none">
+      <div class="sb-label">ทะเบียน Consent</div>
+      <div id="consent-table"></div>
+    </div>
+
+    <div class="sb-label" style="padding:12px 14px 4px">บันทึกเหตุการณ์</div>
+    <div class="log-wrap" id="log-wrap"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <button class="btn-reset" onclick="resetAll()">↩ เริ่มใหม่</button>
+  <button class="btn-next" id="btn-next" onclick="nextStep()">ถัดไป →</button>
+  <span class="route-chip" id="route-chip"></span>
+  <div class="progress" id="progress"></div>
+</div>
+
+<script>
+// ── Model (เหมือน Python implementation) ────────────────────────────────
+class Network {
+  constructor() { this.nodes = {}; this.edges = {}; }
+  add(id, x, y) { this.nodes[id] = { id, x, y, status: 'ACTIVE' }; this.edges[id] = {}; }
+  connect(a, b, w) { this.edges[a][b] = w; this.edges[b][a] = w; }
+  disconnect(a, b) { delete this.edges[a]?.[b]; delete this.edges[b]?.[a]; }
+  ok(id) { const s = this.nodes[id]?.status; return s === 'ACTIVE' || s === 'DEGRADED'; }
+  route(s, e) {
+    const dist = {}, prev = {}, vis = new Set();
+    for (const n in this.nodes) { dist[n] = Infinity; prev[n] = null; }
+    dist[s] = 0; const pq = [[0, s]];
+    while (pq.length) {
+      pq.sort((a, b) => a[0] - b[0]);
+      const [d, u] = pq.shift();
+      if (vis.has(u)) continue; vis.add(u);
+      if (u === e) break;
+      if (!this.ok(u)) continue;
+      for (const [v, w] of Object.entries(this.edges[u] || {})) {
+        if (vis.has(v) || !this.ok(v)) continue;
+        if (d + w < dist[v]) { dist[v] = d + w; prev[v] = u; pq.push([dist[v], v]); }
+      }
+    }
+    if (dist[e] === Infinity) return null;
+    const path = []; let n = e; while (n) { path.unshift(n); n = prev[n]; }
+    return { path, cost: dist[e] };
+  }
+}
+
+class ConsentManager {
+  constructor() { this.reg = {}; }
+  grant(recv, send)  { (this.reg[recv] ??= {})[send] = true; }
+  revoke(recv, send) { (this.reg[recv] ??= {})[send] = false; }
+  verify(send, recv) { return !!(this.reg[recv]?.[send]); }
+}
+
+// ── State ────────────────────────────────────────────────────────────────
+let net, cm, step = 0, routePath = [], animT = 0;
+
+const STEPS = [
+  {
+    title: 'การสร้างเครือข่าย',
+    desc:  'สร้าง Node 6 ตัว ได้แก่ Alpha, Beta, Gamma, Delta, Epsilon, Zeta และเชื่อมต่อกันด้วย Edge 10 เส้น แต่ละเส้นมีค่า Latency (ms) กำกับไว้'
+  },
+  {
+    title: 'การค้นหาเส้นทาง (Dijkstra)',
+    desc:  'ใช้ Dijkstra Algorithm หาเส้นทางที่มี Latency ต่ำที่สุด จาก Alpha ไปยัง Delta โดยพิจารณาเส้นทางทั้งหมดที่เป็นไปได้'
+  },
+  {
+    title: 'การจำลอง Node ล้มเหลว',
+    desc:  'Node Gamma เกิดความผิดพลาดและเปลี่ยนสถานะเป็น FAILED ระบบ Self-Healing จะตรวจจับและหาเส้นทางใหม่โดยอัตโนมัติ'
+  },
+  {
+    title: 'การฟื้นฟูตัวเอง (Self-Healing)',
+    desc:  'Node Gamma ฟื้นฟูตัวเองผ่านสถานะ FAILED → HEALING → ACTIVE เครือข่ายคำนวณเส้นทางที่ดีที่สุดใหม่อีกครั้ง'
+  },
+  {
+    title: 'Evolution Engine ตัดเส้นทางช้า',
+    desc:  'Evolution Engine สแกน Edge ทั้งหมดและตัดเส้นที่มี Latency เกิน 30ms ออก เพื่อให้เครือข่ายมีประสิทธิภาพสูงสุด'
+  },
+  {
+    title: 'Consent Manager',
+    desc:  'ทดสอบระบบการยินยอม ไม่มี ExistencePacket ใดที่จะถูกส่งได้โดยไม่ได้รับการยินยอมจากผู้รับก่อน'
+  },
+];
+
+// ── Canvas ───────────────────────────────────────────────────────────────
+const cvs = document.getElementById('canvas');
+const ctx = cvs.getContext('2d');
+let DPR = window.devicePixelRatio || 1;
+
+function buildNet() {
+  net = new Network(); cm = new ConsentManager();
+  const W = cvs.width / DPR, H = cvs.height / DPR;
+  const cx = W / 2, cy = H / 2, r = Math.min(W, H) * 0.30;
+
+  net.add('Alpha',   cx, cy);
+  net.add('Beta',    cx + r, cy);
+  net.add('Gamma',   cx + Math.cos(Math.PI / 3) * r, cy - Math.sin(Math.PI / 3) * r);
+  net.add('Delta',   cx - Math.cos(Math.PI / 3) * r, cy - Math.sin(Math.PI / 3) * r);
+  net.add('Epsilon', cx - r, cy);
+  net.add('Zeta',    cx, cy + r * 0.9);
+
+  net.connect('Alpha', 'Beta',    10);
+  net.connect('Alpha', 'Gamma',    8);
+  net.connect('Alpha', 'Delta',   12);
+  net.connect('Alpha', 'Epsilon', 15);
+  net.connect('Alpha', 'Zeta',     9);
+  net.connect('Beta',  'Gamma',   20);
+  net.connect('Gamma', 'Delta',   18);
+  net.connect('Delta', 'Epsilon', 22);
+  net.connect('Epsilon','Zeta',   35);
+  net.connect('Zeta',  'Beta',    28);
+}
+
+function resize() {
+  const wrap = cvs.parentElement;
+  DPR = window.devicePixelRatio || 1;
+  cvs.width  = wrap.clientWidth  * DPR;
+  cvs.height = wrap.clientHeight * DPR;
+  ctx.scale(DPR, DPR);
+  buildNet(); updateSidebar();
+}
+window.addEventListener('resize', resize);
+
+const SCOL = { ACTIVE:'#2563eb', DEGRADED:'#d97706', FAILED:'#dc2626', HEALING:'#16a34a' };
+const STHAI = { ACTIVE:'ทำงานปกติ', DEGRADED:'ประสิทธิภาพต่ำ', FAILED:'ล้มเหลว', HEALING:'กำลังฟื้นฟู' };
+
+function draw(ts) {
+  animT = ts * 0.001;
+  const W = cvs.width / DPR, H = cvs.height / DPR;
+  ctx.clearRect(0, 0, W, H);
+  if (!net) { requestAnimationFrame(draw); return; }
+
+  const ps = new Set();
+  for (let i = 0; i < routePath.length - 1; i++) {
+    ps.add(routePath[i] + ':' + routePath[i+1]);
+    ps.add(routePath[i+1] + ':' + routePath[i]);
+  }
+
+  // edges
+  for (const [a, nbrs] of Object.entries(net.edges)) {
+    for (const [b, lat] of Object.entries(nbrs)) {
+      if (a >= b) continue;
+      const na = net.nodes[a], nb = net.nodes[b];
+      const onP   = ps.has(a + ':' + b);
+      const faded = !net.ok(a) || !net.ok(b);
+
+      ctx.save();
+      if (onP) {
+        ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2.5;
+        ctx.setLineDash([8, 5]); ctx.lineDashOffset = -(animT * 22) % 26;
+      } else {
+        ctx.strokeStyle = faded ? '#e9ecef' : '#ced4da';
+        ctx.lineWidth = 1.5; ctx.setLineDash([]);
+      }
+      ctx.beginPath(); ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
+      ctx.restore();
+
+      // latency label
+      const mx = (na.x + nb.x) / 2, my = (na.y + nb.y) / 2;
+      ctx.save();
+      ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      if (onP) {
+        ctx.fillStyle = '#fff'; ctx.fillRect(mx - 16, my - 9, 32, 16);
+        ctx.fillStyle = '#7c3aed';
+      } else {
+        ctx.fillStyle = faded ? '#dee2e6' : '#adb5bd';
+      }
+      ctx.fillText(lat + 'ms', mx, my);
+      ctx.restore();
+    }
+  }
+
+  // nodes
+  for (const node of Object.values(net.nodes)) {
+    const col  = SCOL[node.status] || '#6c757d';
+    const onP  = routePath.includes(node.id);
+    const R    = onP ? 26 : 22;
+
+    // healing ring
+    if (node.status === 'HEALING') {
+      ctx.save();
+      ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.4 + Math.sin(animT * 5) * 0.4;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.arc(node.x, node.y, R + 9, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+    }
+
+    // glow for path nodes
+    if (onP) {
+      ctx.save(); ctx.fillStyle = 'rgba(124,58,237,0.07)';
+      ctx.beginPath(); ctx.arc(node.x, node.y, R + 8, 0, Math.PI * 2);
+      ctx.fill(); ctx.restore();
+    }
+
+    // circle
+    ctx.save();
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = col;
+    ctx.lineWidth = onP ? 2.5 : 1.5; ctx.setLineDash([]);
+    ctx.globalAlpha = node.status === 'FAILED' ? 0.4 : 1;
+    ctx.beginPath(); ctx.arc(node.x, node.y, R, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke(); ctx.restore();
+
+    // label (English name)
+    ctx.save();
+    ctx.globalAlpha = node.status === 'FAILED' ? 0.4 : 1;
+    ctx.font = `${onP ? '600' : '500'} 11px IBM Plex Mono, monospace`;
+    ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(node.id, node.x, node.y); ctx.restore();
+
+    // Thai status below
+    if (node.status !== 'ACTIVE') {
+      ctx.font = '10px Sarabun, sans-serif';
+      ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      ctx.fillText(STHAI[node.status], node.x, node.y + R + 5);
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+// ── Sidebar helpers ───────────────────────────────────────────────────────
+function updateSidebar() { updateNodeTable(); updateProgress(); }
+
+function updateNodeTable() {
+  if (!net) return;
+  const TLABEL = { ACTIVE:'ทำงานปกติ', DEGRADED:'ประสิทธิภาพต่ำ', FAILED:'ล้มเหลว', HEALING:'กำลังฟื้นฟู' };
+  document.getElementById('node-table').innerHTML =
+    Object.values(net.nodes).map(n => `
+      <tr>
+        <td>${n.id}</td>
+        <td><span class="pill p-${n.status.toLowerCase()}">${TLABEL[n.status]}</span></td>
+      </tr>`).join('');
+}
+
+function updateConsent() {
+  const pairs = [['Alpha','Delta'],['Beta','Gamma'],['Delta','Alpha'],['Gamma','Beta']];
+  document.getElementById('consent-table').innerHTML =
+    pairs.map(([s, r]) => `
+      <div class="consent-row">
+        <span class="consent-pair">${s} → ${r}</span>
+        <span class="${cm.verify(s,r) ? 'cv-true':'cv-false'}">
+          ${cm.verify(s,r) ? '✓ ได้รับอนุญาต' : '✗ ไม่ได้รับอนุญาต'}
+        </span>
+      </div>`).join('');
+}
+
+function updateProgress() {
+  document.getElementById('progress').innerHTML =
+    STEPS.map((_, i) =>
+      `<div class="prog-dot ${i < step ? 'done' : i === step ? 'active' : ''}"></div>`
+    ).join('');
+  document.getElementById('step-badge').textContent = `ขั้นที่ ${step + 1} / ${STEPS.length}`;
+}
+
+function setStepInfo(i) {
+  const s = STEPS[i];
+  document.getElementById('step-num').textContent   = `ขั้นที่ ${String(i + 1).padStart(2,'0')}`;
+  document.getElementById('step-title').textContent = s.title;
+  document.getElementById('step-desc').textContent  = s.desc;
+}
+
+function log(msg, type = '') {
+  const wrap = document.getElementById('log-wrap');
+  const el   = document.createElement('div');
+  el.className = `log-line ${type}`;
+  const now = new Date();
+  const ts  = [now.getHours(), now.getMinutes(), now.getSeconds()]
+    .map(v => String(v).padStart(2,'0')).join(':');
+  el.textContent = `[${ts}]  ${msg}`;
+  wrap.appendChild(el);
+  wrap.scrollTop = 99999;
+}
+
+function showRoute(t) { const c = document.getElementById('route-chip'); c.textContent = t; c.style.display = 'inline-block'; }
+function hideRoute()  { document.getElementById('route-chip').style.display = 'none'; }
+
+// ── Step Handlers ─────────────────────────────────────────────────────────
+const stepFns = [
+
+  // 0: init
+  () => {
+    log('สร้าง NetworkState สำเร็จ', 'info');
+    log('Node 6 ตัว: Alpha, Beta, Gamma, Delta, Epsilon, Zeta', 'ok');
+    log('Edge 10 เส้น พร้อมค่า Latency กำกับ', 'ok');
+    log('Node ทุกตัวเริ่มต้นในสถานะ: ทำงานปกติ', 'ok');
+  },
+
+  // 1: routing
+  () => {
+    const r = net.route('Alpha', 'Delta');
+    if (r) {
+      routePath = r.path;
+      log('เรียก find_best_route("Alpha", "Delta")', 'info');
+      log('อัลกอริทึม: Dijkstra + visited-node tracking', '');
+      log(`เส้นทางที่ดีที่สุด: ${r.path.join(' → ')}`, 'route');
+      log(`Latency รวม: ${r.cost}ms`, 'ok');
+      showRoute(`${r.path.join(' → ')}  ·  ${r.cost}ms`);
+    }
+  },
+
+  // 2: fail
+  () => {
+    routePath = []; hideRoute();
+    net.nodes['Gamma'].status = 'FAILED';
+    log('Gamma เปลี่ยนสถานะ: ทำงานปกติ → ล้มเหลว', 'err');
+    log('Self-Healing เริ่มทำงาน — กำลังหาเส้นทางใหม่...', 'warn');
+    updateSidebar();
+    setTimeout(() => {
+      const r = net.route('Alpha', 'Delta');
+      if (r) {
+        routePath = r.path;
+        log(`หาเส้นทางใหม่ได้: ${r.path.join(' → ')}`, 'route');
+        log(`Latency ใหม่: ${r.cost}ms (เพิ่มขึ้นเพราะต้องอ้อม Gamma)`, 'warn');
+        showRoute(`เส้นทางใหม่: ${r.path.join(' → ')}  ·  ${r.cost}ms`);
+        updateSidebar();
+      } else {
+        log('ไม่พบเส้นทางสำรอง!', 'err');
+      }
+    }, 700);
+  },
+
+  // 3: heal
+  () => {
+    routePath = []; hideRoute();
+    net.nodes['Gamma'].status = 'HEALING';
+    log('Gamma เปลี่ยนสถานะ: ล้มเหลว → กำลังฟื้นฟู', 'warn');
+    updateSidebar();
+    setTimeout(() => {
+      net.nodes['Gamma'].status = 'ACTIVE';
+      log('Gamma เปลี่ยนสถานะ: กำลังฟื้นฟู → ทำงานปกติ', 'ok');
+      updateSidebar();
+      const r = net.route('Alpha', 'Delta');
+      if (r) {
+        routePath = r.path;
+        log(`เส้นทางที่ดีที่สุดกลับคืนมา: ${r.path.join(' → ')}`, 'route');
+        log(`Latency: ${r.cost}ms`, 'ok');
+        showRoute(`คืนสภาพ: ${r.path.join(' → ')}  ·  ${r.cost}ms`);
+      }
+    }, 1300);
+  },
+
+  // 4: evolve
+  () => {
+    routePath = []; hideRoute();
+    const T = 30;
+    log(`EvolutionEngine.evolve() — เกณฑ์: ${T}ms`, 'info');
+    setTimeout(() => {
+      let pruned = 0;
+      for (const [a, nbrs] of Object.entries(net.edges)) {
+        for (const [b, lat] of Object.entries(nbrs)) {
+          if (a >= b && lat > T) {
+            log(`ตัดเส้น ${a} ↔ ${b}  (${lat}ms > ${T}ms)`, 'warn');
+            net.disconnect(a, b); pruned++;
+          }
+        }
+      }
+      if (pruned === 0) { log('ทุกเส้นอยู่ในเกณฑ์ — เครือข่ายมีประสิทธิภาพสูงสุด', 'ok'); return; }
+      log(`ตัดออกแล้ว ${pruned} เส้น`, 'ok');
+      const r = net.route('Alpha', 'Delta');
+      if (r) {
+        routePath = r.path;
+        log(`เส้นทางหลัง Evolution: ${r.path.join(' → ')} (${r.cost}ms)`, 'route');
+        showRoute(`หลัง Evolution: ${r.path.join(' → ')}  ·  ${r.cost}ms`);
+      }
+    }, 500);
+  },
+
+  // 5: consent
+  () => {
+    routePath = []; hideRoute();
+    document.getElementById('consent-section').style.display = 'block';
+    log('สร้าง ConsentManager สำเร็จ', 'info');
+    log('verify("Alpha","Delta") → ไม่ได้รับอนุญาต  [ยังไม่มีการให้ความยินยอม]', 'err');
+    setTimeout(() => {
+      cm.grant('Delta', 'Alpha');
+      log('Delta ให้ความยินยอมรับข้อมูลจาก Alpha', 'ok');
+      log('verify("Alpha","Delta") → ได้รับอนุญาต', 'ok');
+      updateConsent();
+    }, 700);
+    setTimeout(() => {
+      cm.grant('Gamma', 'Beta');
+      log('Gamma ให้ความยินยอมรับข้อมูลจาก Beta', 'ok');
+      updateConsent();
+    }, 1400);
+    setTimeout(() => {
+      cm.revoke('Delta', 'Alpha');
+      log('Delta ถอนความยินยอมสำหรับ Alpha', 'warn');
+      log('verify("Alpha","Delta") → ไม่ได้รับอนุญาต  [ถูกถอนแล้ว]', 'err');
+      updateConsent();
+    }, 2200);
+  },
+];
+
+// ── Controls ──────────────────────────────────────────────────────────────
+function nextStep() {
+  if (step >= STEPS.length) return;
+  stepFns[step](); step++;
+  setStepInfo(Math.min(step, STEPS.length - 1));
+  updateSidebar();
+  if (step >= STEPS.length) document.getElementById('btn-next').disabled = true;
+}
+
+function resetAll() {
+  step = 0; routePath = []; hideRoute();
+  document.getElementById('log-wrap').innerHTML = '';
+  document.getElementById('consent-section').style.display = 'none';
+  document.getElementById('btn-next').disabled = false;
+  resize(); setStepInfo(0); updateSidebar();
+  log('รีเซ็ต Demo เรียบร้อย — กด "ถัดไป" เพื่อเริ่มต้น', 'info');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+resize(); setStepInfo(0); updateSidebar();
+log('โหลด LEN Core Demo เรียบร้อย — กด "ถัดไป" เพื่อเริ่มต้น', 'info');
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
