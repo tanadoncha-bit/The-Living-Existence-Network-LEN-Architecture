@@ -149,7 +149,116 @@ class NetworkState:
 
 
 # ==========================================
-# 2. EVOLUTION ENGINE
+# 2. DAFT CLASSIFIER
+# Source: Dyadic Attention Field Theory (DAFT, 2026)
+# Parameters: α (coupling), λ (resolution), d (dimensionality)
+# ==========================================
+
+import math
+
+HBAR_DAFT  = 1 / 3      # α²/λ at canonical α=1, λ=3
+C_PURE     = math.sqrt(1 - HBAR_DAFT)   # ≈ 0.817 — PURE state threshold
+C_BOUNDARY = math.sqrt(HBAR_DAFT)       # ≈ 0.577 — BOUNDARY floor
+
+class DAFTState:
+    PURE         = "PURE"
+    CONSTRUCTIVE = "CONSTRUCTIVE"
+    DESTRUCTIVE  = "DESTRUCTIVE"
+    BOUNDARY     = "BOUNDARY"
+
+
+class DAFTClassifier:
+    """
+    Classifies relationships between LEN entities using DAFT 4-state taxonomy.
+
+    The six DAFT operators:
+      O+ (inner product)   — binding affinity between nodes
+      O* (outer product)   — field/topology structure
+      O- (boundary)        — conservation law
+      O4 (magnitude diff)  — STATE CLASSIFIER: |xi| - |xj|
+      O5 (self-reference)  — node identity (entityId)
+      O6 (metric distance) — LATENCY METRIC: |xi - xj|
+
+    PURE state is the global attractor — Evolution Engine drives network toward it.
+    """
+
+    @staticmethod
+    def classify_node_pair(xi: float, xj: float,
+                           threshold_rho: float = 3.0) -> str:
+        """
+        Classify relationship between two nodes using O4 and eccentricity ratio.
+
+        Parameters
+        ----------
+        xi, xj        : field potentials of the two nodes
+        threshold_rho : eccentricity boundary from canonical 24-pair taxonomy
+
+        Returns DAFTState
+        """
+        mag_i = abs(xi)
+        mag_j = abs(xj)
+
+        O4 = mag_i - mag_j   # magnitude asymmetry
+        O6 = mag_i + mag_j   # total separation (metric distance under constraint)
+
+        if O6 < 1e-8:
+            return DAFTState.BOUNDARY
+
+        if abs(O4) < 1e-6 * O6:
+            return DAFTState.PURE
+
+        rho = O6 / (abs(O4) + 1e-8)
+
+        if rho <= 1.05:
+            return DAFTState.BOUNDARY
+        elif O4 > 0:           # mag_i > mag_j: node i dominant
+            return DAFTState.CONSTRUCTIVE
+        else:                  # mag_i < mag_j: node j dominant
+            return DAFTState.DESTRUCTIVE
+
+    @staticmethod
+    def cognitive_readiness(coherence: float) -> dict:
+        """
+        Assess entity readiness using DAFT Fock-level thresholds.
+        Used by Human Awareness Layer before ExistencePacket transmission.
+
+        C_PURE     = √(2/3) ≈ 0.817 — full readiness (PURE state)
+        C_BOUNDARY = √(1/3) ≈ 0.577 — minimum floor (BOUNDARY state)
+        """
+        if coherence >= C_PURE:
+            return {"state": DAFTState.PURE,         "action": "ALLOW"}
+        elif coherence >= C_BOUNDARY:
+            return {"state": DAFTState.CONSTRUCTIVE, "action": "THROTTLE"}
+        else:
+            return {"state": DAFTState.BOUNDARY,     "action": "BLOCK"}
+
+    @staticmethod
+    def asymmetry_decay(O4_0: float, t: float, tau: float = 1.0) -> dict:
+        """
+        Predict O4 asymmetry decay using DAFT Law 1: O4(t) = O4(0) * e^(-t/τ)
+        Used by Evolution Engine to decide whether to prune an edge or wait.
+
+        Returns t_star: predicted time for asymmetry to reach PURE threshold
+        """
+        O4_classical = O4_0 * math.exp(-t / tau)
+
+        # One-loop quantum correction from DAFT Extended Edition §5.3
+        correction = -(HBAR_DAFT / 2) * (O4_0 ** 3) * (
+            math.exp(-t / tau) - math.exp(-t))
+        O4_quantum = O4_classical + correction
+
+        # Time to reach near-PURE threshold (|O4| < 0.01)
+        t_star = tau * math.log(abs(O4_0) / 0.01) if abs(O4_0) > 0.01 else 0.0
+
+        return {
+            "O4_classical": round(O4_classical, 6),
+            "O4_quantum":   round(O4_quantum, 6),
+            "t_star":       round(t_star, 3),
+        }
+
+
+# ==========================================
+# 3. EVOLUTION ENGINE
 # ==========================================
 
 EFFICIENCY_THRESHOLD  = 100.0   # ms — routes above this are pruned
@@ -187,7 +296,7 @@ class EvolutionEngine:
 
 
 # ==========================================
-# 3. CONSENT MANAGER
+# 4. CONSENT MANAGER
 # ==========================================
 
 class ConsentManager:
@@ -213,7 +322,7 @@ class ConsentManager:
 
 
 # ==========================================
-# 4. UNIT TESTS
+# 5. UNIT TESTS
 # ==========================================
 
 class TestNodeLifecycle(unittest.TestCase):
@@ -398,8 +507,54 @@ class TestConsentManager(unittest.TestCase):
         self.assertFalse(self.cm.verify("Bob", "Alice"))
 
 
+class TestDAFTClassifier(unittest.TestCase):
+
+    def test_pure_state(self):
+        """TC-DAFT-01: Equal magnitudes → PURE state"""
+        self.assertEqual(DAFTClassifier.classify_node_pair(0.5, 0.5), DAFTState.PURE)
+
+    def test_constructive_state(self):
+        """TC-DAFT-02: xi > xj → CONSTRUCTIVE"""
+        self.assertEqual(DAFTClassifier.classify_node_pair(1.0, 0.5), DAFTState.CONSTRUCTIVE)
+
+    def test_destructive_state(self):
+        """TC-DAFT-03: xi < xj → DESTRUCTIVE"""
+        self.assertEqual(DAFTClassifier.classify_node_pair(0.5, 1.0), DAFTState.DESTRUCTIVE)
+
+    def test_boundary_state(self):
+        """TC-DAFT-04: Both zero → BOUNDARY"""
+        self.assertEqual(DAFTClassifier.classify_node_pair(0.0, 0.0), DAFTState.BOUNDARY)
+
+    def test_cognitive_readiness_pure(self):
+        """TC-DAFT-05: Coherence ≥ C_PURE → ALLOW"""
+        result = DAFTClassifier.cognitive_readiness(0.85)
+        self.assertEqual(result["state"],  DAFTState.PURE)
+        self.assertEqual(result["action"], "ALLOW")
+
+    def test_cognitive_readiness_throttle(self):
+        """TC-DAFT-06: C_BOUNDARY ≤ coherence < C_PURE → THROTTLE"""
+        result = DAFTClassifier.cognitive_readiness(0.70)
+        self.assertEqual(result["action"], "THROTTLE")
+
+    def test_cognitive_readiness_block(self):
+        """TC-DAFT-07: Coherence < C_BOUNDARY → BLOCK"""
+        result = DAFTClassifier.cognitive_readiness(0.40)
+        self.assertEqual(result["state"],  DAFTState.BOUNDARY)
+        self.assertEqual(result["action"], "BLOCK")
+
+    def test_asymmetry_decay(self):
+        """TC-DAFT-08: O4 decays exponentially toward zero"""
+        result = DAFTClassifier.asymmetry_decay(O4_0=1.0, t=10.0, tau=1.0)
+        self.assertAlmostEqual(result["O4_classical"], 0.0, places=3)
+
+    def test_t_star_positive(self):
+        """TC-DAFT-09: t_star > 0 when O4_0 > threshold"""
+        result = DAFTClassifier.asymmetry_decay(O4_0=1.0, t=0.0)
+        self.assertGreater(result["t_star"], 0)
+
+
 # ==========================================
-# 5. DEMO SIMULATION
+# 6. DEMO SIMULATION
 # ==========================================
 
 def run_demo():
@@ -442,6 +597,18 @@ def run_demo():
     print(f"            Alpha → Delta allowed: {cm.verify('Alpha', 'Delta')}")
     cm.revoke("Delta", "Alpha")
     print(f"            After revoke          : {cm.verify('Alpha', 'Delta')}")
+
+    print("\n[DAFT]      DAFT Classifier Demo (α=1, λ=3, ħ=1/3)...")
+    print(f"            classify(1.0, 1.0)  → {DAFTClassifier.classify_node_pair(1.0, 1.0)}")
+    print(f"            classify(1.0, 0.5)  → {DAFTClassifier.classify_node_pair(1.0, 0.5)}")
+    print(f"            classify(0.5, 1.0)  → {DAFTClassifier.classify_node_pair(0.5, 1.0)}")
+    print(f"            classify(0.0, 0.0)  → {DAFTClassifier.classify_node_pair(0.0, 0.0)}")
+    r1 = DAFTClassifier.cognitive_readiness(0.85)
+    r2 = DAFTClassifier.cognitive_readiness(0.40)
+    print(f"            readiness(0.85)     → {r1['state']} ({r1['action']})")
+    print(f"            readiness(0.40)     → {r2['state']} ({r2['action']})")
+    decay = DAFTClassifier.asymmetry_decay(O4_0=1.0, t=2.0)
+    print(f"            O4 decay (t=2)      → {decay['O4_classical']}  (t* = {decay['t_star']}s)")
     print()
 
 
@@ -459,6 +626,7 @@ if __name__ == "__main__":
         TestNetworkState,
         TestEvolutionEngine,
         TestConsentManager,
+        TestDAFTClassifier,
     ]:
         suite.addTests(loader.loadTestsFromTestCase(cls))
 
