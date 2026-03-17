@@ -37,6 +37,7 @@ Evolution Engine วิเคราะห์สถานะเครือข่
 Reality Integration Layer      ← เชื่อมโลกจริง โลกเสมือน และระบบจำลอง
 Human Awareness Layer          ← ป้องกัน Cognitive Overload, บังคับ Consent
 Existence Communication Layer  ← ExistencePacket + ETP Protocol
+Structural Privacy Engine      ← Identity-Bound Encryption, Zero-Visibility Routing
 Evolution Engine               ← ปรับ topology อัตโนมัติ
 Infrastructure Layer           ← Node runtime, Routing, Self-Healing
 ```
@@ -60,7 +61,7 @@ Infrastructure Layer           ← Node runtime, Routing, Self-Healing
 
 ## การติดตั้งและรันโค้ด
 
-**ข้อกำหนด:** Python 3.10 ขึ้นไป ไม่ต้อง install library เพิ่ม
+**ข้อกำหนด:** Python 3.12 ขึ้นไป ไม่ต้อง install library เพิ่ม
 
 ```bash
 # 1. Clone repository
@@ -109,7 +110,8 @@ Demo แสดง 6 ขั้นตอนแบบ step-by-step:
 | TestNetworkState | 14 | ผ่านทั้งหมด |
 | TestEvolutionEngine | 2 | ผ่านทั้งหมด |
 | TestConsentManager | 4 | ผ่านทั้งหมด |
-| **รวม** | **25** | **25/25** |
+| TestDAFTClassifier | 9 | ผ่านทั้งหมด |
+| **รวม** | **34** | **34/34** |
 
 ดูผลการทดสอบแบบละเอียดได้ที่ [`test_results.md`](./test_results.md)
 
