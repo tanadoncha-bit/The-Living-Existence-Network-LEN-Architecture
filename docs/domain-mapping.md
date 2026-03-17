@@ -173,3 +173,9 @@ NEURO → learning
 PHY → stability  
 QUANTUM → exploration  
 
+## Unified System Model
+
+system state
+S(t)
+update rule
+S(t+1) = f(S(t), input, interaction)
