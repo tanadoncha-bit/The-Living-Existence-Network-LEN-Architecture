@@ -88,4 +88,4 @@ coherence ≥ C_BOUNDARY → THROTTLE (CONSTRUCTIVE state)
 coherence < C_BOUNDARY → BLOCK   (BOUNDARY state)
 ```
 
-รายละเอียดสูตรคณิตศาสตร์ครบถ้วนอยู่ใน [`Formalization.md`](./docs/Formalization.md)
+รายละเอียดสูตรคณิตศาสตร์ครบถ้วนอยู่ใน [`Formalization.md`](./Formalization.md)
