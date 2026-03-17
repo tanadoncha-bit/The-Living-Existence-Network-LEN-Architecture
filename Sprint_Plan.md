@@ -176,7 +176,7 @@ def log_event(event):
 
 ### SA-05: การตั้งค่า Unit Testing
 
-- ใช้ `pytest`  
+- ใช้ `unittest` (built-in, ไม่ต้อง install เพิ่ม)  
 - ทดสอบ Node communication  
 - ทดสอบ Routing selection  
 - Coverage ≥ 60%  
