@@ -1,49 +1,175 @@
-# การทำ Domain Interface Mapping
+# Domain Interface Mapping for LEN Architecture
 
-เอกสารนี้อธิบายการเชื่อมโยงองค์ความรู้จากหลายสาขาวิชาเข้าสู่การสร้างแบบจำลองเชิงคณิตศาสตร์สำหรับสถาปัตยกรรม Living Existence Network (LEN)
+เอกสารนี้อธิบายการเชื่อมโยงองค์ความรู้จากหลายสาขาวิชาเข้าสู่แบบจำลองคณิตศาสตร์สำหรับระบบ Living Existence Network (LEN)
 
-จุดประสงค์ของ Domain Mapping คือการแปลงแนวคิดทางวิทยาศาสตร์ให้กลายเป็นรูปแบบทางคณิตศาสตร์ที่สามารถนำไปพัฒนาเป็นระบบคอมพิวเตอร์ได้
+วัตถุประสงค์คือแปลงแนวคิดทางวิทยาศาสตร์ให้เป็นโมเดลที่สามารถนำไปพัฒนาเป็นระบบคอมพิวเตอร์ได้
 
-## ภาพรวม Domain Mapping
+---
 
-| สาขา | แนวคิด | รูปแบบคณิตศาสตร์ | ส่วนของระบบ LEN |
-|------|------|------|------|
-| Biology | การสื่อสารระหว่างเซลล์ | โมเดลกราฟ (Graph interaction) | Bio Layer |
-| Physics | การไหลของพลังงานและข้อมูล | Entropy / Information theory | Physical Layer |
-| Neuroscience | การส่งสัญญาณของระบบประสาทและความจำ | Hebbian Learning | Cognitive Layer |
-| Quantum | การซ้อนทับของสถานะ | Hilbert Space | Quantum Node Model |
+# 1. Biology Domain Mapping
 
-## กระบวนการแปลงองค์ความรู้
+## Concept
 
-Domain Knowledge  
-↓  
-Mathematical Formalization  
-↓  
-Computational Model  
-↓  
-System Implementation
+ระบบชีวภาพมีลักษณะเป็นเครือข่ายของเซลล์ที่สื่อสารกันผ่านสัญญาณ
 
-กระบวนการนี้ช่วยให้แนวคิดเชิงทฤษฎีสามารถนำไปพัฒนาเป็นระบบจริงได้
+ตัวอย่างเช่น
 
-## ตัวอย่างการ Mapping
+- เซลล์ประสาท
+- ระบบภูมิคุ้มกัน
+- ระบบชีวเคมี
 
-### Biology → Network Model
+## Abstract Model
 
-การสื่อสารของเซลล์สามารถแทนด้วยโครงสร้างกราฟ
+แทนระบบชีวภาพด้วย
 
-Node = เซลล์  
-Edge = การสื่อสารระหว่างเซลล์
+Biological Interaction Network
 
-### Neuroscience → Memory Formation
+Node = cell  
+Edge = biochemical signal
 
-การเกิดความจำในสมองเกิดจากการเสริมความแข็งแรงของการเชื่อมต่อระหว่างเซลล์ประสาท
+## Mathematical Representation
 
-แนวคิดนี้สามารถนำมาใช้สร้างระบบการเรียนรู้ของเครือข่ายได้
+ใช้กราฟ
 
-### Physics → Information Flow
+G = (V, E)
 
-ข้อมูลในระบบไหลผ่านเครือข่ายตามหลักการของพลังงานและ entropy
+V = เซลล์  
+E = การสื่อสารระหว่างเซลล์
 
-### Quantum → State Representation
+Dynamic behavior
 
-สถานะของ node ในระบบอาจมีความไม่แน่นอนจนกว่าจะถูกประมวลผลหรือสังเกต
+dx_i/dt = Σ w_ij x_j
+
+## LEN Implementation
+
+Bio Layer
+
+หน้าที่
+
+- modeling biological interaction
+- adaptive response
+- self-organization
+
+# 2 Physics Domain Mapping
+# Physics Domain Mapping
+
+## Concept
+
+ในระบบฟิสิกส์ ข้อมูลและพลังงานสามารถแพร่กระจายผ่านสนามหรือโครงสร้างเครือข่าย
+
+ตัวอย่าง
+
+- energy flow
+- entropy
+- field interaction
+
+## Abstract Model
+
+Information Field Model
+
+state space S
+
+## Mathematical Representation
+
+Entropy
+
+H = - Σ p(x) log p(x)
+
+Energy flow
+
+E(t+1) = E(t) + input - dissipation
+
+## LEN Implementation
+
+Physical Infrastructure Layer
+
+หน้าที่
+
+- resource distribution
+- network stability
+- system equilibrium
+
+# 3 Neuroscience Domain Mapping
+# Neuroscience Domain Mapping
+
+## Concept
+
+สมองมนุษย์เรียนรู้ผ่านการเสริมความแข็งแรงของการเชื่อมต่อระหว่างเซลล์ประสาท
+
+หลักการ
+
+Hebbian Learning
+
+"neurons that fire together wire together"
+
+## Mathematical Model
+
+Δw_ij = η x_i x_j
+
+โดยที่
+
+w_ij = connection weight
+η = learning rate
+x_i = activation of neuron i
+x_j = activation of neuron j
+
+## Dynamic Memory Model
+
+memory(t+1) = memory(t) + learning_rate * activation
+
+## LEN Implementation
+
+Cognitive Layer
+
+หน้าที่
+
+- memory formation
+- pattern learning
+- knowledge propagation
+
+# 4 Quantum Domain Mapping
+# Quantum Domain Mapping
+
+## Concept
+
+ระบบควอนตัมสามารถอยู่ในหลายสถานะพร้อมกัน
+
+เรียกว่า
+
+Superposition
+
+## Mathematical Representation
+
+State vector
+
+|ψ⟩ = Σ α_i |i⟩
+
+Probability
+
+P(i) = |α_i|^2
+
+## LEN Interpretation
+
+node state uncertainty
+
+system may explore multiple possibilities before collapse
+
+## LEN Implementation
+
+Quantum-inspired computation layer
+
+หน้าที่
+
+- probabilistic reasoning
+- exploration of solution space
+
+# 5 Cross-Domain Integration
+
+LEN เชื่อมโยงหลาย domain เข้าด้วยกัน
+
+
+BIO → adaptation  
+NEURO → learning  
+PHY → stability  
+QUANTUM → exploration  
+
